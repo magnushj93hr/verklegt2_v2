@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fire_sale.apps.FireSaleConfig',
     'catalog.apps.CatalogConfig',
+    'categories.apps.CategoriesConfig'
 ]
 
 MIDDLEWARE = [

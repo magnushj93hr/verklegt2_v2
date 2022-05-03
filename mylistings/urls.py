@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     # http://localhost:8000/firesale
-    path('', views.index, name="Mylistings-index"),
+    path('', views.index, name="mylistings-index"),
 ]

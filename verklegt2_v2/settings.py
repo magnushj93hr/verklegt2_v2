@@ -39,7 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fire_sale.apps.FireSaleConfig',
     'catalog.apps.CatalogConfig',
+<<<<<<< Updated upstream
     'categories.apps.CategoriesConfig'
+=======
+    'mybids.apps.MybidsConfig',
+    'myfavourites.apps.MyfavouritesConfig',
+    'mylistings.apps.MylistingsConfig',
+    'mypurchases.apps.MypurchasesConfig'
+>>>>>>> Stashed changes
 ]
 
 MIDDLEWARE = [

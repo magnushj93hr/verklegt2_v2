@@ -4,9 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7cd4b02e-edec-4fd3-a025-531a3af9f82b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/Category/index.html" afterDir="false" />
+    <list default="true" id="7cd4b02e-edec-4fd3-a025-531a3af9f82b" name="Changes" comment="Category file">
+      <change afterPath="$PROJECT_DIR$/mybids/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myfavourites/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mylistings/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myprofile/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mypurchases/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/Mybids/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/Myfavourites/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/Mylistings/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/Myprofile/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/Mypurchases/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verklegt2_v2/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/verklegt2_v2/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,8 +98,23 @@
       <option name="presentableId" value="Default" />
       <updated>1651513607448</updated>
       <workItem from="1651513614013" duration="9074000" />
-      <workItem from="1651569533051" duration="1689000" />
+      <workItem from="1651569533051" duration="4521000" />
     </task>
+    <task id="LOCAL-00001" summary="Category file">
+      <created>1651571313920</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1651571313920</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Category file">
+      <created>1651571369124</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1651571369124</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,6 +130,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Category file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Category file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -22,5 +22,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('firesale/', include('fire_sale.urls')),
     path('catalog/', include('catalog.urls')),
-    path('categories/', include('categories.urls'))
+    path('categories/', include('categories.urls')),
+    path('myprofile', include('myprofile.urls')),
+    path('myfavourites', include('myfavourites.urls')),
+    path('mylistings', include('mylistings.urls')),
+    path('mybids', include('mybids.urls')),
+    path('mypurchases', include('mypurchases.urls'))
 ]

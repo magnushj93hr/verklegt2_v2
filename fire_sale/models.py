@@ -1,3 +1,5 @@
+from django.contrib.auth.password_validation import MinimumLengthValidator
+from django.core.validators import MinValueValidator
 from django.db import models
 from categories.models import Category
 
@@ -8,9 +10,6 @@ class Users(models.Model):
     name = models.CharField(max_length=255)
     bio = models.CharField(max_length=255)
     image = models.CharField(max_length=9999)
-
-    def __str__(self):
-        return self.name
 
 
 class ProductCategory(models.Model):
@@ -30,8 +29,11 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    price = models.IntegerField()
-    # users = models.ForeignKey(Users, on_delete=models.CASCADE)
+    price = models.IntegerField(
+        default=1,
+        validators=[MinValueValidator(1)]
+    )
+    seller = models.ForeignKey(Users, on_delete=models.CASCADE)# bæta við seller auto við log in
     condition = models.CharField(
         max_length=2,
         choices=COND_CHOICES,

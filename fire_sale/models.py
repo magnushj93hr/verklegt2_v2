@@ -11,6 +11,9 @@ class Users(models.Model):
     bio = models.CharField(max_length=255)
     image = models.CharField(max_length=9999)
 
+    def __str__(self):
+        return self.name
+
 
 class ProductCategory(models.Model):
     name = models.CharField(max_length=255)

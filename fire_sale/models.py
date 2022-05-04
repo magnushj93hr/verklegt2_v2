@@ -31,7 +31,7 @@ class Product(models.Model):
     description = models.CharField(max_length=255)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.IntegerField()
-    seller = models.ForeignKey(Users, on_delete=models.CASCADE)
+    # users = models.ForeignKey(Users, on_delete=models.CASCADE)
     condition = models.CharField(
         max_length=2,
         choices=COND_CHOICES,

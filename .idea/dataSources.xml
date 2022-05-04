@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Firesale-db" uuid="1bb08b3b-f7c9-42fa-a418-b22c7ece1648">
+    <data-source source="LOCAL" name="firesale-db" uuid="cc02a3e8-b80f-4585-979b-6a2f821b4064">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

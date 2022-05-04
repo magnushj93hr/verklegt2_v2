@@ -1,4 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>{{ category.name }}</h1>
+    <h2>Hi</h2>
+    <div class="catalog">
+        <p> bla </p>
+        {% for item in product %}
+            <p> bla í for </p>
+            {% include 'catalog/single_product.html' with item=item %}
+        {% endfor %}
+    </div>
 {% endblock %}

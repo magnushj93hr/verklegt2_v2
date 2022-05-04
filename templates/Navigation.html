@@ -16,16 +16,19 @@
             Watchlist
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">My Purchases</a></li>
-            <li><a class="dropdown-item" href="#">My Listings</a></li>
-            <li><a class="dropdown-item" href="#">My Bids</a></li>
-            <li><a class="dropdown-item" href="#">My Favourites</a></li>
+            <li><a class="dropdown-item" href="{% url 'mypurchases-index' %}">My Purchases</a></li>
+            <li><a class="dropdown-item" href="{% url 'mylistings-index' %}">My Listings</a></li>
+            <li><a class="dropdown-item" href="{% url 'mybids-index' %}">My Bids</a></li>
+            <li><a class="dropdown-item" href="{% url 'myfavourites-index' %}">My Favourites</a></li>
           </ul>
         </li><li class="nav-item">
           <a class="nav-link" href="#">Notifications</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled">Create new listing</a>
+          <a class="nav-link" href="#">Create new listing</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#">My Profile</a>
         </li>
       </ul>
         <! --hér er gamli search barinn!! -->

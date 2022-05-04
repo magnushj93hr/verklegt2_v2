@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     # http://localhost:8000/firesale
-    path('', views.index, name="Myfavourites-index"),
+    path('', views.index, name="myfavourites-index"),
 ]

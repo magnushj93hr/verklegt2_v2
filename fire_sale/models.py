@@ -6,8 +6,18 @@ from categories.models import Category
 
 class Users(models.Model):
     name = models.CharField(max_length=255)
-    Bio = models.CharField(max_length=255)
+    bio = models.CharField(max_length=255)
     image = models.CharField(max_length=9999)
+
+    def __str__(self):
+        return self.name
+
+
+class ProductCategory(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
 
 
 class Product(models.Model):
@@ -17,16 +27,27 @@ class Product(models.Model):
         (NEW, 'New'),
         (PREOWNED, 'Pre Owned'),
     ]
+    name = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    price = models.IntegerField()
+    seller = models.ForeignKey(Users, on_delete=models.CASCADE)
     condition = models.CharField(
         max_length=2,
         choices=COND_CHOICES,
         default=NEW,
     )
-    name = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
     image = models.CharField(max_length=9999)
-    seller = models.ForeignKey(Users, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    # seller = models.CharField(max_length=255)
+
+
+class ProductImage(models.Model):
+    image = models.CharField(max_length=999)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.image
 
 
 class Rating(models.Model):

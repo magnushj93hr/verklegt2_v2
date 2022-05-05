@@ -12,4 +12,4 @@ def get_product_by_id(request, id):
     context = {
         'category': product
     }
-    return render(request, 'Catalog/index.html', context)
+    return render(request, 'product/index.html', context)

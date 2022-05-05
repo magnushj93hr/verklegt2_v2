@@ -1,2 +1,9 @@
 {% extends 'base.html' %}
-{% block content %}{% endblock %}
+{% block content %}
+    <h1>product index</h1>
+    <div class="product">
+    {% for item in product.product_set.all %}
+        {% include 'product/product_details.html' with item=item %}
+    {% endfor %}
+    </div>
+{% endblock %}

@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404
-from categories.models import Category
 from fire_sale.models import Product
 
 

@@ -1,3 +1,5 @@
+from django.contrib.auth.password_validation import MinimumLengthValidator
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -19,7 +21,11 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
-    price = models.IntegerField()
+    price = models.IntegerField(
+        default=1,
+        validators=[MinValueValidator(1)]
+    )
+
     condition = models.CharField(
         max_length=2,
         choices=COND_CHOICES,
@@ -46,5 +52,5 @@ class Rating(models.Model):
 
 class Bids(models.Model):
     Amount = models.IntegerField()
-    User = models.ForeignKey(User, on_delete=models.CASCADE)
+    Bid_user = models.ForeignKey(User, on_delete=models.CASCADE)
     Product = models.ForeignKey(Product, on_delete=models.CASCADE)

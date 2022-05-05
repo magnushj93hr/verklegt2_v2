@@ -10,6 +10,6 @@ def index(request):
 def get_product_by_id(request, id):
     product = Product.objects.get(pk=id)# select product prefetch / einhvernstaðar
     context = {
-        'category': product
+        'product': product
     }
     return render(request, 'product/index.html', context)

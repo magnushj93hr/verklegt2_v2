@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>product index</h1>
-    <div class="product">
-    {% for item in product.product_set.all %}
-        {% include 'product/product_details.html' with item=item %}
-    {% endfor %}
+    <h4>{{ product.name }}</h4><!-- Gera flottan lit -->
+    <p>{{ product.description }}</p>
+    <p>{{ product.price }}</p>
+    <p>{{ product.condition }}</p>
+    <img src="{{ product.image }}" />
     </div>
 {% endblock %}

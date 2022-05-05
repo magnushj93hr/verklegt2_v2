@@ -37,7 +37,7 @@ class Product(models.Model):
 
 
 class ProductImage(models.Model):
-    image = models.CharField(max_length=999)
+    image = models.CharField(max_length=9999)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     def __str__(self):

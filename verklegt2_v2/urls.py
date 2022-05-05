@@ -28,5 +28,6 @@ urlpatterns = [
     path('mylistings', include('mylistings.urls')),
     path('mybids', include('mybids.urls')),
     path('mypurchases', include('mypurchases.urls')),
-    path('user/', include('user.urls'))
+    path('user/', include('user.urls')),
+    path('product/', include('product.urls'))
 ]

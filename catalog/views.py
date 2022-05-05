@@ -9,11 +9,8 @@ def index(request):
 
 
 def get_category_by_id(request, id):
-    return render(request, 'catalog/index.html', {
-        # 'category': get_object_or_404(Category, pk=id)
-    })
-
-    # TODO sennileg virkni fyrir að fá upp catagories
-
-    # context = {'product': Product.objects.all().order_by('name')}
-    # return render(request, 'catalog/index.html', context)
+    category = ProductCategory.objects.get(pk=id)# select product prefetch / einhvernstaðar
+    context = {
+        'category': category
+    }
+    return render(request, 'Catalog/index.html', context)

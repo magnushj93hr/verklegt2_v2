@@ -1,13 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from categories.models import Category
 # Create your views here.
 from fire_sale.forms.product_form import ProductCreateForm
 from fire_sale.models import ProductImage
 
 
 def index(request):
-    context = {'categories': Category.objects.all().order_by('name')}
-    return render(request, 'firesale/index.html', context)
+    #context = {'categories': Category.objects.all().order_by('name')}
+    return render(request, 'firesale/index.html')
 
 
 def create_product(request):

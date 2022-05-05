@@ -1,16 +1,5 @@
 from django.db import models
-from categories.models import Category
-
-
-# Create your models here.
-
-class Users(models.Model):
-    name = models.CharField(max_length=255)
-    bio = models.CharField(max_length=255)
-    image = models.CharField(max_length=9999)
-
-    def __str__(self):
-        return self.name
+from django.contrib.auth.models import User
 
 
 class ProductCategory(models.Model):
@@ -29,9 +18,8 @@ class Product(models.Model):
     ]
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
     price = models.IntegerField()
-    # users = models.ForeignKey(Users, on_delete=models.CASCADE)
     condition = models.CharField(
         max_length=2,
         choices=COND_CHOICES,
@@ -53,10 +41,10 @@ class ProductImage(models.Model):
 class Rating(models.Model):
     Grade = models.IntegerField(choices=list(zip(range(1, 11), range(1, 11))), unique=True)
     Reviews = models.CharField(max_length=255, blank=True)
-    user = models.ForeignKey(Users, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Bids(models.Model):
     Amount = models.IntegerField()
-    User = models.ForeignKey(Users, on_delete=models.CASCADE)
+    User = models.ForeignKey(User, on_delete=models.CASCADE)
     Product = models.ForeignKey(Product, on_delete=models.CASCADE)

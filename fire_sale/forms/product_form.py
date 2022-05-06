@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.forms import ModelForm, widgets
 from fire_sale.models import Product
 from django import forms
@@ -5,6 +6,7 @@ from django import forms
 
 class ProductCreateForm(ModelForm):
     image = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    seller = User.username
 
     class Meta:
         model = Product

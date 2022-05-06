@@ -1,4 +1,3 @@
-from django.contrib.auth.password_validation import MinimumLengthValidator
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib.auth.models import User
@@ -32,7 +31,7 @@ class Product(models.Model):
         default=NEW,
     )
     image = models.CharField(max_length=9999)
-
+    seller = User.username
     # seller = models.CharField(max_length=255)
 
 

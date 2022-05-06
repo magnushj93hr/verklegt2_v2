@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'myfavourites.apps.MyfavouritesConfig',
     'mylistings.apps.MylistingsConfig',
     'mypurchases.apps.MypurchasesConfig',
-    'user.apps.UserConfig'
+    'user.apps.UserConfig',
+    'product.apps.ProductConfig'
 ]
 
 MIDDLEWARE = [

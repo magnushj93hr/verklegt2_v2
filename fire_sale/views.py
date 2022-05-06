@@ -4,10 +4,16 @@ from django.shortcuts import render, get_object_or_404, redirect
 from fire_sale.models import ProductCategory, Product
 from fire_sale.forms.product_form import ProductCreateForm
 from fire_sale.models import ProductImage
+from fire_sale.models import Product
 
 
 def index(request):
-    context = {'categories': ProductCategory.objects.all().order_by('name')}
+    product = Product.objects.all()
+    category = ProductCategory.objects.all().order_by('name')
+    context = {
+        'categories': category,
+        'product': product
+    }
     return render(request, 'firesale/index.html', context)
 
 
@@ -36,3 +42,4 @@ def create_product(request):
     return render(request, 'firesale/create_product.html', {
         'form': form
         })
+

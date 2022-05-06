@@ -1,3 +1,4 @@
+from django.conf.global_settings import AUTH_USER_MODEL
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib.auth.models import User
@@ -31,8 +32,7 @@ class Product(models.Model):
         default=NEW,
     )
     image = models.CharField(max_length=9999)
-    seller = User.username
-    # seller = models.CharField(max_length=255)
+    seller = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
 class ProductImage(models.Model):

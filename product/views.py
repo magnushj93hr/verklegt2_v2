@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from fire_sale.models import Product, Bids
 from product.forms.bid_form import PostBidForm
@@ -17,7 +18,6 @@ def get_product_by_id(request, id):
 
 
 def place_bid(request, id):
-    print(request)
     product = Product.objects.get(pk=id)  # select product prefetch / einhvernstaðar
     form = PostBidForm()
     context = {
@@ -32,7 +32,9 @@ def place_bid(request, id):
             bid_user_id = request.user.id
             bid_placed = Bids(Amount=amount, Product_id=product_id, Bid_user_id=bid_user_id)
             bid_placed.save()
-            return redirect('/')
+            request.method = 'GET'
+            print(request)
+            return HttpResponseRedirect(request.path_info)
     else:
         pass # form = PostBidForm()
     return render(request, 'product/index.html', context)

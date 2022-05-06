@@ -10,11 +10,12 @@
     {% csrf_token %}
     {{ form }}
         {% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
+        <!-- Error message sender -->
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
 {% endif %}
     <input type="submit" value="Place bid" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0"/>
     </form>

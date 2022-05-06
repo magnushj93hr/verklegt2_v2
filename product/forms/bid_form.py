@@ -5,7 +5,7 @@ from django.forms import ModelForm, widgets
 class PostBidForm(ModelForm):
     class Meta:
         model = Bids
-        exclude = ['id', 'product_id', 'bid_user_id']
+        exclude = ['Bid_user', 'Product']
         widget = {
-            'amount': widgets.NumberInput(attrs={'class': 'form-control'})
+            'Amount': widgets.NumberInput(attrs={'class': 'form-control'})
         }

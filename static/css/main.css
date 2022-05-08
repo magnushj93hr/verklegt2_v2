@@ -1,6 +1,31 @@
 .firesale {
-
+    display: flex;
 }
 
 .profile-image{
+}
+
+#search-box {
+}
+
+#search-box {
+}
+
+.category-box {
+    background-color: orange;
+    width: 200px;
+    height: 100px;
+    display: inline-block;
+    margin: 20px;
+}
+
+.category-text {
+    color: black;
+}
+
+#boxx {
+    display: flex;
+}
+#linkwithoutline {
+     text-decoration: none;
 }

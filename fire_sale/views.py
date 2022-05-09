@@ -112,10 +112,15 @@ def get_product_by_seller_id(request):
 
 
 def get_my_bids(request):
+    highest_bids = set()
     user = request.user.id
-    bids = Bids.objects.filter(Bid_user_id=user)
-    print(bids.all()[0]['Product_id'])
-    # product = Product.objects.filter(id=bids.objects.Product_id)
+    bids = Bids.objects.filter(Bid_user_id=user).values()
+    for item in bids:
+        id, amount, bid_user_id,product_id = item.items()
+        # print(product_id)
+        highest_bids.add(product_id[1])
+    for i in highest_bids:
+        product = Product.objects.filter(id=i)
     context = {
         'bids': bids,
         'product': product

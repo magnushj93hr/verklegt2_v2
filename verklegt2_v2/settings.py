@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure-_zi91nd%3o85wo*ur-14mc%bco(++or)!jzd30%^xi6^@-=81p
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -39,11 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fire_sale.apps.FireSaleConfig',
     'catalog.apps.CatalogConfig',
-    #'categories.apps.CategoriesConfig',
-    #'mybids.apps.MybidsConfig',
-    #'myfavourites.apps.MyfavouritesConfig',
-    #'mylistings.apps.MylistingsConfig',
-    #'mypurchases.apps.MypurchasesConfig',
+    # 'categories.apps.CategoriesConfig',
+    # 'mybids.apps.MybidsConfig',
+    # 'myfavourites.apps.MyfavouritesConfig',
+    # 'mylistings.apps.MylistingsConfig',
+    # 'mypurchases.apps.MypurchasesConfig',
     'user.apps.UserConfig',
     'product.apps.ProductConfig'
 ]
@@ -79,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'verklegt2_v2.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -93,7 +90,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -113,7 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -124,7 +119,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -141,3 +135,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/user/login'
 LOGIN_REDIRECT_URL = '/user/profile'
+
+# Email settings
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = '1025'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False

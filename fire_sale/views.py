@@ -2,10 +2,11 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
-from fire_sale.models import ProductCategory, Product
+from fire_sale.models import ProductCategory, Product, Bids
 from fire_sale.forms.product_form import ProductCreateForm
 from fire_sale.models import ProductImage
 from fire_sale.models import Product
+from django.core.mail import send_mail
 
 
 def index(request):
@@ -59,10 +60,41 @@ def create_product(request):
 
 def get_product_by_seller_id(request):
     seller = request.user.id
-
     product = Product.objects.filter(seller_id=seller)
-    print(product)
     context = {
         'product': product
     }
+    if request.method == 'POST':
+        prod_id = request.POST.get('id')
+        product = Product.objects.get(pk=prod_id)
+        buyer_email = ""
+        products = Bids.objects.filter(Product_id=prod_id)
+        #gera if setningu ef það er engin prod í products:
+        for prod in products:
+            if prod.Amount == product.price:
+                buyer_id = prod.Bid_user_id
+
+        buyer = User.objects.get(pk=buyer_id)
+        buyer_email = buyer.email
+        send_mail(
+            'Bid accepted', #subject
+            'Your bid has been accepted. Please go to my bids to continue to payment.', #message
+            'firesale@firesale.com',
+            [buyer_email],
+            False,
+            None,
+            None,
+            None,
+            None
+        )
+
     return render(request, 'firesale/my_listings.html', context)
+#þarf að ná í id-ið af vörunni
+#þarf að finna kaupandann sem er með hæsta boðið.
+## þurfum að gera þannig að það sé ekki hægt að bidda sama verð
+#gera ef product id er ekki í bids þá ekki setja takkann.
+#appenda emailum í lista til að senda multiples
+
+
+
+# HVERNIG GET ÉG GERT IF SKIPUN SEM ER FYRIR EF ÞETTA PRODUCT ID ER I BIDS FILENUM?

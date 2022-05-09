@@ -16,6 +16,8 @@
             {% endfor %}
         </ul>
 {% endif %}
+    #ef product er ekki í bid, þá
+    <input type='hidden' value='{{ product.id }}' name='id'>
     <input type="submit" value="Accept bid" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0"/>
     </form>
     </div>

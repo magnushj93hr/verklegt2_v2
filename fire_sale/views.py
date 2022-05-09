@@ -119,6 +119,7 @@ def get_my_bids(request):
         id, amount, bid_user_id,product_id = item.items()
         # print(product_id)
         highest_bids.add(product_id[1])
+    print(highest_bids)
     for i in highest_bids:
         product = Product.objects.filter(id=i)
     context = {

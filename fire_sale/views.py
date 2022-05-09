@@ -110,10 +110,14 @@ def get_product_by_seller_id(request):
     }
     return render(request, 'firesale/my_listings.html', context)
 
+
 def get_my_bids(request):
     user = request.user.id
-    my_bids = Bids.objects.filter(Bid_user_id=user)
+    bids = Bids.objects.filter(Bid_user_id=user)
+    print(bids.all()[0]['Product_id'])
+    # product = Product.objects.filter(id=bids.objects.Product_id)
     context = {
-        'bids': my_bids
+        'bids': bids,
+        'product': product
     }
-    return render(request, 'firesale/mybids.html', context)
+    return render(request, 'firesale/listbids.html', context)

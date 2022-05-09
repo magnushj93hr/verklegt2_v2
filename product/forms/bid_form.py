@@ -9,3 +9,4 @@ class PostBidForm(ModelForm):
         widget = {
             'Amount': widgets.NumberInput(attrs={'class': 'form-control'})
         }
+

@@ -41,7 +41,8 @@ def create_product(request):
             image = form.cleaned_data.get('image')
             seller = request.user
 
-            product = Product(name=name, description=description, category=category, price=price, condition=condition, image=image, seller=seller)
+            product = Product(name=name, description=description, category=category, price=price, condition=condition,
+                              image=image, seller=seller)
             product.save()
             # product = form.save()
             product_image = ProductImage(image=image, product=product)
@@ -53,5 +54,15 @@ def create_product(request):
         form = ProductCreateForm()
     return render(request, 'firesale/create_product.html', {
         'form': form
-        })
+    })
 
+
+def get_product_by_seller_id(request):
+    seller = request.user.id
+
+    product = Product.objects.filter(seller_id=seller)
+    print(product)
+    context = {
+        'product': product
+    }
+    return render(request, 'firesale/my_listings.html', context)

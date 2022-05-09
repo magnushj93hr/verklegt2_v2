@@ -12,6 +12,7 @@ def index(request):
 
 def get_product_by_id(request, id):
     product = Product.objects.get(pk=id)# select product prefetch / einhvernstaðar
+    print(product)
     context = {
         'product': product
     }
@@ -25,6 +26,7 @@ def place_bid(request, id):
         'product': product,
         'form': form
     }
+    print(product)
 
     if request.method == 'POST':
         form = PostBidForm(data=request.POST)

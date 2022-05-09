@@ -10,7 +10,12 @@ def index(request):
 
 def get_category_by_id(request, id):
     category = ProductCategory.objects.get(pk=id)# select product prefetch / einhvernstaðar
+    product = Product.objects.filter(category_id=id).order_by('name')
     context = {
-        'category': category
+        'category': category,
+        'product': product
     }
+    print(category, product)
     return render(request, 'Catalog/index.html', context)
+
+

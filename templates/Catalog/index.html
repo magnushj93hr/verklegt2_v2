@@ -2,7 +2,8 @@
 {% block content %}
     <h1>{{ category.name }}</h1>
     <div class="catalog">
-       {% for item in category.product_set.all %} <!-- prefetch -->
+
+       {% for item in product %} <!-- prefetch -->
             {% include 'catalog/single_product.html' with item=item %}
        {% endfor %}
     </div>

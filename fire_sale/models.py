@@ -33,6 +33,8 @@ class Product(models.Model):
     )
     image = models.CharField(max_length=9999)
     seller = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
+    accepted = models.BooleanField(default=False)
+    payment = models.BooleanField(default=False)
 
 
 class ProductImage(models.Model):
@@ -117,3 +119,10 @@ class PaymentInformation(models.Model):
             MaxValueValidator(3)
         ]
     )
+
+
+class Notification(models.Model):
+    seen = models.BooleanField(default=False),
+    message = models.CharField(max_length=255, default='Your bid has been accepted, please proceed to My Bids for payment'),
+    buyer_id = models.ForeignKey(User, on_delete=models.CASCADE),
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)

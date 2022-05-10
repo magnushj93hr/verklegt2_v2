@@ -62,8 +62,9 @@ def create_product(request):
 
 
 def get_contact_information(request):
-    value = request.GET.get('id', '1')
-    print(value)
+    new_value = request.GET.get('id')
+    if new_value:
+        request.session['product_id'] = new_value
     if request.method == 'POST':
         form = ContactInformationCreateForm(data=request.POST)
         if form.is_valid():
@@ -73,11 +74,11 @@ def get_contact_information(request):
             request.session['City'] = form.cleaned_data.get('City')
             request.session['Country'] = form.cleaned_data.get('Country')
             request.session['Zip'] = form.cleaned_data.get('Zip')
-           # for key, value in request.session.items():
-            #    print('{} => {}'.format(key, value))
-            # contact_information = ContactInformation(full_name=full_name, street_name=street_name,
-            #                                         house_number=house_number, city=city, country=country, zip=zip)
-            # contact_information.save()
+        # for key, value in request.session.items():
+        #    print('{} => {}'.format(key, value))
+        # contact_information = ContactInformation(full_name=full_name, street_name=street_name,
+        #                                         house_number=house_number, city=city, country=country, zip=zip)
+        # contact_information.save()
         # print(contact_information)
         # get_payment_information(request)
         return redirect('payment_information')
@@ -112,7 +113,6 @@ def get_payment_information(request):
 
 
 def view_payment(request):
-    print(request.session['CVC'])
     if request.method == 'GET':
         return render(request, 'firesale/view_payment.html')
     elif request.method == 'POST':
@@ -131,12 +131,12 @@ def view_payment(request):
         zip = request.session['Zip']
         contact_information = ContactInformation(Full_name=full_name, Street_name=street_name, House_number=house_number, City=city, Country=country, Zip=zip)
         contact_information.save()
-        # update_payment(request,9)
+        product_id = request.session['product_id']
+        update_payment(request, product_id)
         return redirect('Firesale-index')
 
 
 def update_payment(request, id):
-
     product = Product.objects.get(pk=id)
     name = product.name
     description = product.description

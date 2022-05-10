@@ -62,6 +62,7 @@ def create_product(request):
 
 
 def get_contact_information(request):
+    print('hæææææææææææææ')
     if request.method == 'POST':
         form = ContactInformationCreateForm(data=request.POST)
         if form.is_valid():
@@ -167,7 +168,10 @@ def get_my_bids(request):
             product_list.append(elem)
 
     context = {
-        'bids': bids,
+        #'bids': bids,
         'product': product_list
     }
+    if request.method == 'POST':
+        get_contact_information(request)
+        #return render(request, 'firesale/contact_information.html')
     return render(request, 'firesale/listbids.html', context)

@@ -1,4 +1,5 @@
 from django.conf.global_settings import AUTH_USER_MODEL
+from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.contrib.auth.models import User
@@ -56,19 +57,36 @@ class Bids(models.Model):
 
 
 class ContactInformation(models.Model):
-    Full_name = models.CharField(max_length=255)
-    Street_name = models.CharField(max_length=255)
-    House_number = models.IntegerField()
-    City = models.CharField(max_length=255)
-    Country = models.CharField(max_length=255) # Gera select html element
-    Zip = models.IntegerField(
+    full_name = models.CharField(max_length=255)
+    street_name = models.CharField(max_length=255)
+    house_number = models.IntegerField()
+    city = models.CharField(max_length=255)
+    country = models.CharField(max_length=255) # Gera select html element
+    zip = models.IntegerField(
         validators=[
             MaxValueValidator(10)
         ]
     )
 
+def credit_card_check(num):
+    if len(str(int(num))) != 16:
+        raise ValidationError('Card number needs to be 16 nums')
+
+def check_exp_year(num):
+    if len(str(int(num))) != 4:
+        raise ValidationError('year has to be 4 letter long')
+
+def check_cvc(num):
+    if len(str(int(num))) != 3:
+        raise ValidationError('cvc must be 3 letters long')
 
 class PaymentInformation(models.Model):
+    name_of_cardholder = models.CharField(max_length=255)
+    card_number = models.FloatField(
+        validators=[
+            credit_card_check
+        ]
+    )
     JAN = '01'
     FEB = '02'
     MAR = '03'
@@ -95,25 +113,18 @@ class PaymentInformation(models.Model):
         (NOV, 'NOV'),
         (DEC, 'DEC'),
     ]
-    Name_of_cardholder = models.CharField(max_length=255)
-    card_number = models.IntegerField(
-        validators=[
-            MaxValueValidator(16)
-        ]
-    )
-    Exp_month = models.CharField(
+    exp_month = models.CharField(
         max_length=2,
         choices=MONTH_CHOICES,
         default=JAN,
     )
-    Exp_year = models.IntegerField(
+    exp_year = models.IntegerField(
         validators=[
-            MaxValueValidator(4)
+            check_exp_year
         ]
     )
-    CVC = models.IntegerField(
+    cvc = models.IntegerField(
         validators=[
-            MinValueValidator(3),
-            MaxValueValidator(3)
+            check_cvc
         ]
     )

@@ -119,11 +119,16 @@ def get_my_bids(request):
         id, amount, bid_user_id,product_id = item.items()
         # print(product_id)
         highest_bids.add(product_id[1])
-    print(highest_bids)
+    #print(highest_bids)
+    product_list = []
     for i in highest_bids:
         product = Product.objects.filter(id=i)
+        print(i)
+        for elem in product:
+            product_list.append(elem)
+
     context = {
         'bids': bids,
-        'product': product
+        'product': product_list
     }
     return render(request, 'firesale/listbids.html', context)

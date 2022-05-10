@@ -28,6 +28,8 @@ $(document).ready(function(){
     });
 });
 
+
+
 //þarf að gera get request fyrir að ná í allt og svo nota það url með search filter.
 //þarf að finna réttan stað (view) til að setja það get request inn.
 //SP. TA: við erum með öðruvísi til að fá allt upp (því við skiptum í catagoríur stax),

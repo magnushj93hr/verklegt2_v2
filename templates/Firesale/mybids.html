@@ -16,7 +16,11 @@
             {% endfor %}
         </ul>
         {% endif %}
+    {% if product.accepted == True %}
     <a href="{% url 'contact_information' %}" value="Pay" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0">Pay</a>
+    {% else %}
+        <p>Your bid has not been accepted</p>
+    {% endif %}
     </form>
     </div>
 {% endblock %}

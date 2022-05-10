@@ -135,17 +135,17 @@ def get_product_by_seller_id(request):
 
         buyer = User.objects.get(pk=buyer_id)
         buyer_email = buyer.email
-        send_mail(
-            'Bid accepted',  # subject
-            'Your bid has been accepted. Please go to my bids to continue to payment.',  # message
-            'firesale@firesale.com',
-            [buyer_email],
-            False,
-            None,
-            None,
-            None,
-            None
-        )
+        #send_mail(
+            #'Bid accepted',  # subject
+            #'Your bid has been accepted. Please go to my bids to continue to payment.',  # message
+            #'firesale@firesale.com',
+            #[buyer_email],
+            #False,
+            #None,
+            #None,
+            #None,
+            #None
+        #)
         update_accept(request, prod_id)
 
     return render(request, 'firesale/my_listings.html', context)

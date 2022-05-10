@@ -13,9 +13,10 @@
     <h4>CVC: {{ request.session.CVC }}</h4>
     <form class="form-horizontal" action="{% url 'view_payment' %}" method="post">
     {% csrf_token %}
+        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-primary">Back</a>
     <a href="{% url 'view_payment' %}">
     <button type="submit" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0">Confirm</button>
     </a>
-    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-primary" class>Back</a>
+
     </form>
 {% endblock %}

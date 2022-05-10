@@ -145,7 +145,7 @@ def rating_view(request):
             grade = form.cleaned_data.get('Grade')
             rating = Rating(Grade=grade)
             rating.save()
-    return redirect('firesale-index')
+    return redirect('Firesale-index')
 
 
 def update_payment(request, id):

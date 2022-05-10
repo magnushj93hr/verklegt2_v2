@@ -9,13 +9,17 @@ def index(request):
 
 
 def get_category_by_id(request, id):
+    if request.GET['sort_by'] == "price":
+        product = Product.objects.filter(category_id=id).order_by('price')
+    elif request.GET['sort_by'] == 'name':
+        product = Product.objects.filter(category_id=id).order_by('name')
+    req = request.GET.copy()
+    print(req)
     category = ProductCategory.objects.get(pk=id)# select product prefetch / einhvernstaðar
-    product = Product.objects.filter(category_id=id).order_by('name')
     context = {
         'category': category,
         'product': product
     }
-    print(category, product)
     return render(request, 'Catalog/index.html', context)
 
 

@@ -57,12 +57,12 @@ class Bids(models.Model):
 
 
 class ContactInformation(models.Model):
-    full_name = models.CharField(max_length=255)
-    street_name = models.CharField(max_length=255)
-    house_number = models.IntegerField()
-    city = models.CharField(max_length=255)
-    country = models.CharField(max_length=255) # Gera select html element
-    zip = models.IntegerField(
+    Full_name = models.CharField(max_length=255)
+    Street_name = models.CharField(max_length=255)
+    House_number = models.IntegerField()
+    City = models.CharField(max_length=255)
+    Country = models.CharField(max_length=255)  # Gera select html element
+    Zip = models.IntegerField(
         validators=[
             MaxValueValidator(10)
         ]
@@ -85,12 +85,8 @@ def check_cvc(num):
 
 
 class PaymentInformation(models.Model):
-    name_of_cardholder = models.CharField(max_length=255)
-    card_number = models.IntegerField(
-        validators=[
-            credit_card_check
-        ]
-    )
+    Name_of_cardholder = models.CharField(max_length=255)
+    card_number = models.CharField(max_length=16)
     JAN = '01'
     FEB = '02'
     MAR = '03'
@@ -117,17 +113,17 @@ class PaymentInformation(models.Model):
         (NOV, 'NOV'),
         (DEC, 'DEC'),
     ]
-    exp_month = models.CharField(
+    Exp_month = models.CharField(
         max_length=2,
         choices=MONTH_CHOICES,
         default=JAN,
     )
-    exp_year = models.IntegerField(
+    Exp_year = models.IntegerField(
         validators=[
             check_exp_year
         ]
     )
-    cvc = models.IntegerField(
+    CVC = models.IntegerField(
         validators=[
             check_cvc
         ]

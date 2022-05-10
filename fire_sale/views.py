@@ -62,46 +62,46 @@ def create_product(request):
 
 
 def get_contact_information(request):
-    form = ContactInformationCreateForm()
     if request.method == 'POST':
+        form = ContactInformationCreateForm(data=request.POST)
         if form.is_valid():
-            form = ContactInformationCreateForm(data=request.POST)
-            request.session['full_name'] = form.cleaned_data.get('full_name')
-            request.session['street_name'] = form.cleaned_data.get('street_name')
-            request.session['house_number'] = form.cleaned_data.get('house_number')
-            request.session['city'] = form.cleaned_data.get('city')
-            request.session['country'] = form.cleaned_data.get('country')
-            request.session['zip'] = form.cleaned_data.get('zip')
+            request.session['Full_name'] = form.cleaned_data.get('Full_name')
+            request.session['Street_name'] = form.cleaned_data.get('Street_name')
+            request.session['House_number'] = form.cleaned_data.get('House_number')
+            request.session['City'] = form.cleaned_data.get('City')
+            request.session['Country'] = form.cleaned_data.get('Country')
+            request.session['Zip'] = form.cleaned_data.get('Zip')
+           # for key, value in request.session.items():
+            #    print('{} => {}'.format(key, value))
             # contact_information = ContactInformation(full_name=full_name, street_name=street_name,
             #                                         house_number=house_number, city=city, country=country, zip=zip)
             # contact_information.save()
         # print(contact_information)
-        print(request.session)
-        get_payment_information(request)
-        #return redirect('firesale/get_payment_information')
+        # get_payment_information(request)
+        return redirect('payment_information')
     else:
-        pass
+        form = ContactInformationCreateForm()
     return render(request, 'firesale/contact_information.html', {
         'form': form
     })
 
 
 def get_payment_information(request):
-    print('hhhhhhhhhhhhh')
     if request.method == 'POST':
         form = PaymentCreateForm(data=request.POST)
         if form.is_valid():
-            request.session['name_of_cardholder'] = form.cleaned_data.get('name_of_cardholder')
+            request.session['Name_of_cardholder'] = form.cleaned_data.get('Name_of_cardholder')
             request.session['card_number'] = form.cleaned_data.get('card_number')
-            request.session['exp_month'] = form.cleaned_data.get('exp_month')
-            request.session['exp_year'] = form.cleaned_data.get('exp_year')
-            request.session['cvc'] = form.cleaned_data.get('cvc')
-            print(request.session['cvc'])
+            request.session['Exp_month'] = form.cleaned_data.get('Exp_month')
+            request.session['Exp_year'] = form.cleaned_data.get('Exp_year')
+            request.session['CVC'] = form.cleaned_data.get('CVC')
+            #for key, value in request.session.items():
+            #    print('{} => {}'.format(key, value))
             # payment_information = PaymentInformation(name_of_cardholder=name_of_cardholder, card_number=card_number,
             #                                         exp_month=exp_month, exp_year=exp_year, cvc=cvc)
             # payment_information.save()
-            view_payment(request)
-            #return redirect('firesale-index.html')  # gera post skjá með upplýsingum
+        return redirect('view_payment')
+        #return render(request, 'firesale/view_payment.html')  # gera post skjá með upplýsingum
     else:
         form = PaymentCreateForm()
     return render(request, 'firesale/payment_information.html', {
@@ -110,7 +110,25 @@ def get_payment_information(request):
 
 
 def view_payment(request):
-    return render(request, 'firesale/view_payment.html')
+    if request.method == 'GET':
+        return render(request, 'firesale/view_payment.html')
+    elif request.method == 'POST':
+        name_of_cardholder = request.session['Name_of_cardholder']
+        card_number = request.session['card_number']
+        exp_month = request.session['Exp_month']
+        exp_year = request.session['Exp_year']
+        cvc = request.session['CVC']
+        payment = PaymentInformation(Name_of_cardholder=name_of_cardholder, card_number=card_number, Exp_month=exp_month, Exp_year=exp_year, CVC=cvc)
+        payment.save()
+        full_name = request.session['Full_name']
+        street_name = request.session['Street_name']
+        house_number = request.session['House_number']
+        city = request.session['City']
+        country = request.session['Country']
+        zip = request.session['Zip']
+        contact_information = ContactInformation(Full_name=full_name, Street_name=street_name, House_number=house_number, City=city, Country=country, Zip=zip)
+        contact_information.save()
+        return redirect('Firesale-index')
 
 
 def get_product_by_seller_id(request):

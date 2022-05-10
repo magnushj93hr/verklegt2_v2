@@ -3,6 +3,8 @@
     <form class="form-horizontal" action="{% url 'payment_information' %}" method="post">
             {% csrf_token %}
     {{ form }}
-    <a href="{% url 'view_payment' %}" type="submit" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0">Next </a>
+        <a href="{% url 'view_payment'%}">
+    <input type="submit" value="Next" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0">
+        </a>
     </form>
 {% endblock %}

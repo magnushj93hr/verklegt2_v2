@@ -72,7 +72,8 @@ def get_contact_information(request):
             country = form.cleaned_data.get('country')
             zip = form.cleaned_data.get('zip')
 
-            contact_information = ContactInformation(Full_name=full_name, Street_Name=street_name, House_number=house_number,City=city, Country=country, Zip=zip)
+            contact_information = ContactInformation(Full_name=full_name, Street_Name=street_name,
+                                                     House_number=house_number, City=city, Country=country, Zip=zip)
             contact_information.save()
             return redirect('firesale/payment_information.html')
     else:
@@ -92,9 +93,10 @@ def get_payment_information(request):
             exp_year = form.cleaned_data.get('Exp_year')
             cvc = form.cleaned_data.get('CVC')
 
-            payment_information = PaymentInformation(name_of_cardholder=name_of_cardholder, card_number=card_number, exp_month=exp_month, exp_year=exp_year, cvc=cvc)
+            payment_information = PaymentInformation(name_of_cardholder=name_of_cardholder, card_number=card_number,
+                                                     exp_month=exp_month, exp_year=exp_year, cvc=cvc)
             payment_information.save()
-            return redirect('firesale-index.html') # gera post skjá með upplýsingum
+            return redirect('firesale-index.html')  # gera post skjá með upplýsingum
     else:
         form = PaymentCreateForm()
     return render(request, 'firesale/payment_information.html', {
@@ -113,7 +115,7 @@ def get_product_by_seller_id(request):
         product = Product.objects.get(pk=prod_id)
         buyer_email = ""
         products = Bids.objects.filter(Product_id=prod_id)
-        #gera if setningu ef það er engin prod í products:
+        # gera if setningu ef það er engin prod í products:
         for prod in products:
             if prod.Amount == product.price:
                 buyer_id = prod.Bid_user_id
@@ -121,8 +123,8 @@ def get_product_by_seller_id(request):
         buyer = User.objects.get(pk=buyer_id)
         buyer_email = buyer.email
         send_mail(
-            'Bid accepted', #subject
-            'Your bid has been accepted. Please go to my bids to continue to payment.', #message
+            'Bid accepted',  # subject
+            'Your bid has been accepted. Please go to my bids to continue to payment.',  # message
             'firesale@firesale.com',
             [buyer_email],
             False,
@@ -134,16 +136,15 @@ def get_product_by_seller_id(request):
 
     return render(request, 'firesale/my_listings.html', context)
 
-#þarf að ná í id-ið af vörunni
-#þarf að finna kaupandann sem er með hæsta boðið.
-## þurfum að gera þannig að það sé ekki hægt að bidda sama verð
-#gera ef product id er ekki í bids þá ekki setja takkann.
-#appenda emailum í lista til að senda multiples
 
+# þarf að ná í id-ið af vörunni
+# þarf að finna kaupandann sem er með hæsta boðið.
+## þurfum að gera þannig að það sé ekki hægt að bidda sama verð
+# gera ef product id er ekki í bids þá ekki setja takkann.
+# appenda emailum í lista til að senda multiples
 
 
 # HVERNIG GET ÉG GERT IF SKIPUN SEM ER FYRIR EF ÞETTA PRODUCT ID ER I BIDS FILENUM?
-
 
 
 def get_my_bids(request):
@@ -151,14 +152,18 @@ def get_my_bids(request):
     user = request.user.id
     bids = Bids.objects.filter(Bid_user_id=user).values()
     for item in bids:
-        id, amount, bid_user_id,product_id = item.items()
+        id, amount, bid_user_id, product_id = item.items()
         # print(product_id)
         highest_bids.add(product_id[1])
-    print(highest_bids)
+    product_list = []
     for i in highest_bids:
         product = Product.objects.filter(id=i)
+        print(i)
+        for elem in product:
+            product_list.append(elem)
+
     context = {
         'bids': bids,
-        'product': product
+        'product': product_list
     }
     return render(request, 'firesale/listbids.html', context)

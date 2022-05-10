@@ -135,17 +135,23 @@ def view_payment(request):
         contact_information.save()
         product_id = request.session['product_id']
         update_payment(request, product_id)
-        return redirect('rating')
+        return redirect('rating_view')
 
 
 def rating_view(request):
     if request.method == 'POST':
         form = RatingForm(data=request.POST)
+        print(form.errors)
         if form.is_valid():
             grade = form.cleaned_data.get('Grade')
             rating = Rating(Grade=grade)
             rating.save()
-    return redirect('Firesale-index')
+        return redirect('rating_view')
+    else:
+        form = RatingForm()
+        return render(request, 'firesale/give_rating.html',{
+            'form': form
+        })
 
 
 def update_payment(request, id):

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form class="form-horizontal" action="{% url 'rating_view' %}" method="post">
+            {% csrf_token %}
+    {{ form }}
+        {% if messages %}
+
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-primary">Back</a>
+        <a href="{% url 'rating_view'%}">
+    <input type="submit" value="Next" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0">
+            </a>
+    </form>
+{% endblock %}

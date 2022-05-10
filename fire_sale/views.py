@@ -105,6 +105,10 @@ def get_payment_information(request):
 def get_product_by_seller_id(request):
     seller = request.user.id
     product = Product.objects.filter(seller_id=seller)
+    print("hello")
+    for p in product:
+        p.__setattr__("bids", Bids.objects.filter(Product_id=p.id))
+        print(p.bids)
     context = {
         'product': product
     }
@@ -143,6 +147,8 @@ def get_product_by_seller_id(request):
 
 
 # HVERNIG GET ÉG GERT IF SKIPUN SEM ER FYRIR EF ÞETTA PRODUCT ID ER I BIDS FILENUM?
+# REGISTRATION FORM SETJA EMAIL
+# GET EKKI SEARCHAÐ ÞEGAR EG ER INNI MY LISTINGS
 
 
 

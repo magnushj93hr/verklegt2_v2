@@ -6,5 +6,6 @@
         <a href="{% url 'payment_information'%}">
     <input type="submit" value="Next" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0">
             </a>
+    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-primary" class>Back</a>
     </form>
 {% endblock %}

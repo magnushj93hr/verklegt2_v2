@@ -16,5 +16,6 @@
     <a href="{% url 'view_payment' %}">
     <button type="submit" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0">Confirm</button>
     </a>
+    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-primary" class>Back</a>
     </form>
 {% endblock %}

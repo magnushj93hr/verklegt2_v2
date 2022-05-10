@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>{{ category.name }}</h1>
+    {% if order == 'desc' %}
+    {% else %}{% endif %}
+    <a href="/catalog/{{ category.id }}?sort_by=price">Sort by price</a>
+    <a href="/catalog/{{ category.id }}?sort_by=name">Sort by name</a>
     <div class="catalog">
 
        {% for item in product %} <!-- prefetch -->

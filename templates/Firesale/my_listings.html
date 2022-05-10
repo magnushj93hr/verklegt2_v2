@@ -3,10 +3,11 @@
     <h1></h1>
     <div>
         {% for product in product %}
+            {% if prduct is None %}
+                <h1>You have no listings</h1>
+            {% endif%}
             {% if product.accepted != True %}
                 {% include 'firesale/listingsoverview.html' with product=product %}
-            {% else %}
-                <h1>You have no listings!</h1>
             {% endif %}
         {% endfor %}
     </div>

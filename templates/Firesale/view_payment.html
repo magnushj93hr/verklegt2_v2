@@ -1,0 +1,4 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h4>{{ request.session.card_number |slice:":2"}}</h4>
+{% endblock %}

@@ -62,47 +62,55 @@ def create_product(request):
 
 
 def get_contact_information(request):
-    print('hæææææææææææææ')
+    form = ContactInformationCreateForm()
     if request.method == 'POST':
-        form = ContactInformationCreateForm(data=request.POST)
         if form.is_valid():
-            full_name = form.cleaned_data.get('full_name')
-            street_name = form.cleaned_data.get('street_name')
-            house_number = form.cleaned_data.get('house_number')
-            city = form.cleaned_data.get('city')
-            country = form.cleaned_data.get('country')
-            zip = form.cleaned_data.get('zip')
-
-            contact_information = ContactInformation(Full_name=full_name, Street_Name=street_name,
-                                                     House_number=house_number, City=city, Country=country, Zip=zip)
-            contact_information.save()
-            return redirect('firesale/payment_information.html')
+            form = ContactInformationCreateForm(data=request.POST)
+            request.session['full_name'] = form.cleaned_data.get('full_name')
+            request.session['street_name'] = form.cleaned_data.get('street_name')
+            request.session['house_number'] = form.cleaned_data.get('house_number')
+            request.session['city'] = form.cleaned_data.get('city')
+            request.session['country'] = form.cleaned_data.get('country')
+            request.session['zip'] = form.cleaned_data.get('zip')
+            # contact_information = ContactInformation(full_name=full_name, street_name=street_name,
+            #                                         house_number=house_number, city=city, country=country, zip=zip)
+            # contact_information.save()
+        # print(contact_information)
+        print(request.session)
+        get_payment_information(request)
+        #return redirect('firesale/get_payment_information')
     else:
-        form = ContactInformationCreateForm()
+        pass
     return render(request, 'firesale/contact_information.html', {
         'form': form
     })
 
 
 def get_payment_information(request):
+    print('hhhhhhhhhhhhh')
     if request.method == 'POST':
         form = PaymentCreateForm(data=request.POST)
         if form.is_valid():
-            name_of_cardholder = form.cleaned_data.get('Name_of_cardholder')
-            card_number = form.cleaned_data.get('card_number')
-            exp_month = form.cleaned_data.get('Exp_month')
-            exp_year = form.cleaned_data.get('Exp_year')
-            cvc = form.cleaned_data.get('CVC')
-
-            payment_information = PaymentInformation(name_of_cardholder=name_of_cardholder, card_number=card_number,
-                                                     exp_month=exp_month, exp_year=exp_year, cvc=cvc)
-            payment_information.save()
-            return redirect('firesale-index.html')  # gera post skjá með upplýsingum
+            request.session['name_of_cardholder'] = form.cleaned_data.get('name_of_cardholder')
+            request.session['card_number'] = form.cleaned_data.get('card_number')
+            request.session['exp_month'] = form.cleaned_data.get('exp_month')
+            request.session['exp_year'] = form.cleaned_data.get('exp_year')
+            request.session['cvc'] = form.cleaned_data.get('cvc')
+            print(request.session['cvc'])
+            # payment_information = PaymentInformation(name_of_cardholder=name_of_cardholder, card_number=card_number,
+            #                                         exp_month=exp_month, exp_year=exp_year, cvc=cvc)
+            # payment_information.save()
+            view_payment(request)
+            #return redirect('firesale-index.html')  # gera post skjá með upplýsingum
     else:
         form = PaymentCreateForm()
     return render(request, 'firesale/payment_information.html', {
         'form': form
     })
+
+
+def view_payment(request):
+    return render(request, 'firesale/view_payment.html')
 
 
 def get_product_by_seller_id(request):
@@ -168,10 +176,10 @@ def get_my_bids(request):
             product_list.append(elem)
 
     context = {
-        #'bids': bids,
+        # 'bids': bids,
         'product': product_list
     }
     if request.method == 'POST':
         get_contact_information(request)
-        #return render(request, 'firesale/contact_information.html')
+        # return render(request, 'firesale/contact_information.html')
     return render(request, 'firesale/listbids.html', context)

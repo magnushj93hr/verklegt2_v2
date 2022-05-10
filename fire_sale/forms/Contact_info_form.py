@@ -1,8 +1,10 @@
 from django.forms import ModelForm, widgets
+from fire_sale.models import ContactInformation
 
 
 class ContactInformationCreateForm(ModelForm):
     class Meta:
+        model = ContactInformation
         exclude = ['id']
         widget = {
             'Full name': widgets.TextInput(attrs={'class': 'form-control'}),

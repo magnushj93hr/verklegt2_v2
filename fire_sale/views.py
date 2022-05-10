@@ -2,10 +2,10 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
-
+from fire_sale.forms.Rating_form import RatingForm
 from fire_sale.forms.Contact_info_form import ContactInformationCreateForm
 from fire_sale.forms.Payment_form import PaymentCreateForm
-from fire_sale.models import ProductCategory, Product, ContactInformation, PaymentInformation, Bids
+from fire_sale.models import ProductCategory, Product, ContactInformation, PaymentInformation, Bids, Rating
 from fire_sale.forms.product_form import ProductCreateForm
 from fire_sale.models import ProductImage
 from fire_sale.models import Product
@@ -98,13 +98,13 @@ def get_payment_information(request):
             request.session['Exp_month'] = form.cleaned_data.get('Exp_month')
             request.session['Exp_year'] = form.cleaned_data.get('Exp_year')
             request.session['CVC'] = form.cleaned_data.get('CVC')
-            #for key, value in request.session.items():
+            # for key, value in request.session.items():
             #    print('{} => {}'.format(key, value))
             # payment_information = PaymentInformation(name_of_cardholder=name_of_cardholder, card_number=card_number,
             #                                         exp_month=exp_month, exp_year=exp_year, cvc=cvc)
             # payment_information.save()
         return redirect('view_payment')
-        #return render(request, 'firesale/view_payment.html')  # gera post skjá með upplýsingum
+        # return render(request, 'firesale/view_payment.html')  # gera post skjá með upplýsingum
     else:
         form = PaymentCreateForm()
     return render(request, 'firesale/payment_information.html', {
@@ -121,7 +121,8 @@ def view_payment(request):
         exp_month = request.session['Exp_month']
         exp_year = request.session['Exp_year']
         cvc = request.session['CVC']
-        payment = PaymentInformation(Name_of_cardholder=name_of_cardholder, card_number=card_number, Exp_month=exp_month, Exp_year=exp_year, CVC=cvc)
+        payment = PaymentInformation(Name_of_cardholder=name_of_cardholder, card_number=card_number,
+                                     Exp_month=exp_month, Exp_year=exp_year, CVC=cvc)
         payment.save()
         full_name = request.session['Full_name']
         street_name = request.session['Street_name']
@@ -129,11 +130,22 @@ def view_payment(request):
         city = request.session['City']
         country = request.session['Country']
         zip = request.session['Zip']
-        contact_information = ContactInformation(Full_name=full_name, Street_name=street_name, House_number=house_number, City=city, Country=country, Zip=zip)
+        contact_information = ContactInformation(Full_name=full_name, Street_name=street_name,
+                                                 House_number=house_number, City=city, Country=country, Zip=zip)
         contact_information.save()
         product_id = request.session['product_id']
         update_payment(request, product_id)
-        return redirect('Firesale-index')
+        return redirect('rating')
+
+
+def rating_view(request):
+    if request.method == 'POST':
+        form = RatingForm(data=request.POST)
+        if form.is_valid():
+            grade = form.cleaned_data.get('Grade')
+            rating = Rating(Grade=grade)
+            rating.save()
+    return redirect('firesale-index')
 
 
 def update_payment(request, id):
@@ -174,17 +186,17 @@ def get_product_by_seller_id(request):
 
         buyer = User.objects.get(pk=buyer_id)
         buyer_email = buyer.email
-        #send_mail(
-            #'Bid accepted',  # subject
-            #'Your bid has been accepted. Please go to my bids to continue to payment.',  # message
-            #'firesale@firesale.com',
-            #[buyer_email],
-            #False,
-            #None,
-            #None,
-            #None,
-            #None
-        #)
+        # send_mail(
+        # 'Bid accepted',  # subject
+        # 'Your bid has been accepted. Please go to my bids to continue to payment.',  # message
+        # 'firesale@firesale.com',
+        # [buyer_email],
+        # False,
+        # None,
+        # None,
+        # None,
+        # None
+        # )
         update_accept(request, prod_id)
 
     return render(request, 'firesale/my_listings.html', context)
@@ -200,7 +212,8 @@ def update_accept(request, id):
     category_id = product.category_id
     seller_id = product.seller_id
     accept = True
-    product = Product(id=id, name=name, description=description, price=price, condition=condition, image=image, category_id=category_id, seller_id=seller_id, accepted=accept)
+    product = Product(id=id, name=name, description=description, price=price, condition=condition, image=image,
+                      category_id=category_id, seller_id=seller_id, accepted=accept)
     product.save()
 
 

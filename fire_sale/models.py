@@ -48,7 +48,6 @@ class ProductImage(models.Model):
 
 class Rating(models.Model):
     Grade = models.IntegerField(choices=list(zip(range(1, 11), range(1, 11))), unique=True)
-    Reviews = models.CharField(max_length=255, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 

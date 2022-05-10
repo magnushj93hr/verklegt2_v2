@@ -10,4 +10,5 @@ urlpatterns = [
     path('get_contact_information', views.get_contact_information, name="contact_information"),
     path('get_payment_information', views.get_payment_information, name="payment_information"),
     path('view_payment', views.view_payment, name="view_payment"),
+    path('rating_view', views.rating_view, name="rating")
 ]

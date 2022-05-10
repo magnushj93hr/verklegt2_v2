@@ -76,6 +76,7 @@ def get_contact_information(request):
             #                                         house_number=house_number, city=city, country=country, zip=zip)
             # contact_information.save()
         # print(contact_information)
+        print(request.session)
         get_payment_information(request)
         #return redirect('firesale/get_payment_information')
     else:
@@ -95,16 +96,21 @@ def get_payment_information(request):
             request.session['exp_month'] = form.cleaned_data.get('exp_month')
             request.session['exp_year'] = form.cleaned_data.get('exp_year')
             request.session['cvc'] = form.cleaned_data.get('cvc')
-
+            print(request.session['cvc'])
             # payment_information = PaymentInformation(name_of_cardholder=name_of_cardholder, card_number=card_number,
             #                                         exp_month=exp_month, exp_year=exp_year, cvc=cvc)
             # payment_information.save()
-            return redirect('firesale-index.html')  # gera post skjá með upplýsingum
+            view_payment(request)
+            #return redirect('firesale-index.html')  # gera post skjá með upplýsingum
     else:
         form = PaymentCreateForm()
     return render(request, 'firesale/payment_information.html', {
         'form': form
     })
+
+
+def view_payment(request):
+    return render(request, 'firesale/view_payment.html')
 
 
 def get_product_by_seller_id(request):

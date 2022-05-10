@@ -68,21 +68,25 @@ class ContactInformation(models.Model):
         ]
     )
 
+
 def credit_card_check(num):
     if len(str(int(num))) != 16:
         raise ValidationError('Card number needs to be 16 nums')
+
 
 def check_exp_year(num):
     if len(str(int(num))) != 4:
         raise ValidationError('year has to be 4 letter long')
 
+
 def check_cvc(num):
     if len(str(int(num))) != 3:
         raise ValidationError('cvc must be 3 letters long')
 
+
 class PaymentInformation(models.Model):
     name_of_cardholder = models.CharField(max_length=255)
-    card_number = models.FloatField(
+    card_number = models.IntegerField(
         validators=[
             credit_card_check
         ]

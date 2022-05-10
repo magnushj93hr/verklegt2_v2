@@ -2,7 +2,7 @@ from django.forms import ModelForm, widgets
 from fire_sale.models import Rating
 
 
-class RatingForm:
+class RatingForm(ModelForm):
     model = Rating
     exclude = ['user']
 

@@ -1,0 +1,22 @@
+{% block content %}
+    <div>
+    <h4>{{ product.name }}</h4><!-- Gera flottan lit -->
+    <p>{{ product.description }}</p>
+    <p>{{ product.price }}</p>
+    <p>{{ product.condition }}</p>
+    <img src="{{ product.image }}" />
+    <form class="form form-horizontal" method="POST">
+    {% csrf_token %}
+    {{ form }}
+        {% if messages %}
+        <!-- Error message sender -->
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+{% endif %}
+    <input type="submit" value="Pay" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0"/>
+    </form>
+    </div>
+{% endblock %}

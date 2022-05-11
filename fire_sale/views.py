@@ -217,7 +217,7 @@ def push_notification(request):
     context = {
         'notifications': notifications,
     }
-    return redirect('notifications.html', context)
+    return render(request, 'firesale/notifications.html', context)
 
 
 def update_accept(request, id):

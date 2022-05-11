@@ -1,7 +1,7 @@
-<div class="well product">
+<div class="col-12">
     <a href="/product/{{ item.id }}"> <!-- setja upp nýtt app með html til að linka vörur -->
         <h4>{{ item.name }}</h4><!-- Gera flottan lit -->
         <h2>{{ item.price }}</h2>
-        <img src="{{ item.image }}" />
+        <img src="{{ item.image }}" class="img-fluid" alt="...">
     </a>
 </div>

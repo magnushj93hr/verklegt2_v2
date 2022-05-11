@@ -177,7 +177,6 @@ def get_product_by_seller_id(request):
     product = Product.objects.filter(seller_id=seller)
     for p in product:
         p.__setattr__("bids", Bids.objects.filter(Product_id=p.id))
-        print(p.bids)
     context = {
         'product': product
     }
@@ -214,7 +213,7 @@ def push_notification(request):
     user_id = request.user.id
     notifications = Notification.objects.filter(buyer_id=user_id)
     for notif in notifications:
-        notif.__setattr__('product', Product.objects.filter(id=notif.product_id))
+        notif.__setattr__('Product', Product.objects.filter(id=notif.product_id))
 
     context = {
         'notifications': notifications,

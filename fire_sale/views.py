@@ -215,7 +215,7 @@ def push_notification(request):
     user_id = request.user.id
     notifications = Notification.objects.filter(buyer_id=user_id)
     for notif in notifications:
-        notif.__setattr__('product', Product.objects.filter(id=notif.id))
+        notif.__setattr__('product', Product.objects.filter(id=notif.product_id))
 
     context = {
         'notifications': notifications,

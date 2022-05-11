@@ -1,7 +1,9 @@
-<div class="col-12">
-    <a href="/product/{{ item.id }}"> <!-- setja upp nýtt app með html til að linka vörur -->
-        <h4>{{ item.name }}</h4><!-- Gera flottan lit -->
-        <h2>{{ item.price }}</h2>
-        <img src="{{ item.image }}" class="img-fluid" alt="...">
+<div class="col-12 align-items-center">
+    <a href="/product/{{ item.id }}">
+        <div class="d-flex flex-nowrap justify-content-start">
+            <img src="{{ item.image }}" class="img-thumbnail d-flex justify-content-start" alt="...">
+        </div>
+        <h1 class="d-flex flex-nowrap justify-content-center">{{ item.name }}</h1><!-- Gera flottan lit -->
+        <h2 class="d-flex flex-nowrap justify-content-end">{{ item.price }}</h2>
     </a>
 </div>

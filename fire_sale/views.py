@@ -201,6 +201,9 @@ def get_product_by_seller_id(request):
     if request.method == 'POST':
         prod_id = request.POST.get('id')
         product = Product.objects.get(pk=prod_id)
+        context = {
+            'product': product
+        }
         bidders = set()
         buyer_email = ""
         products = Bids.objects.filter(Product_id=prod_id)
@@ -223,6 +226,8 @@ def get_product_by_seller_id(request):
         push_notification(request) #hafa með eða ekki??
 
         update_accept(request, prod_id)
+
+        return render(request, 'firesale/message_after_accepted.html', context)
 
     return render(request, 'firesale/my_listings.html', context)
 

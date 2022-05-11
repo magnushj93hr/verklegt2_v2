@@ -21,9 +21,12 @@ def get_product_by_id(request, id):
 
 def place_bid(request, id):
     product = Product.objects.get(pk=id)  # select product prefetch / einhvernstaðar
+    other_products = Product.objects.filter(category_id=product.category_id) #þarf að mínusa frá þá vöru sem er...
+    other_products2 = other_products.exclude(id=product.id)
     form = PostBidForm()
     context = {
         'product': product,
+        'similarproducts': other_products2,
         'form': form
     }
     print(product)

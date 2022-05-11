@@ -3,7 +3,6 @@ from fire_sale.models import ProductCategory
 from fire_sale.models import Product
 
 
-# Create your views here.
 def index(request):
     return render(request, 'catalog/index.html')
 
@@ -15,11 +14,9 @@ def get_category_by_id(request, id):
         product = Product.objects.filter(category_id=id).order_by('name')
     req = request.GET.copy()
     print(req)
-    category = ProductCategory.objects.get(pk=id)# select product prefetch / einhvernstaðar
+    category = ProductCategory.objects.get(pk=id)  # select product prefetch / einhvernstaðar
     context = {
         'category': category,
         'product': product
     }
     return render(request, 'Catalog/index.html', context)
-
-

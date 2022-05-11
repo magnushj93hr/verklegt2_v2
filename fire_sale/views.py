@@ -193,14 +193,14 @@ def update_payment(request, id):
                       category_id=category_id, seller_id=seller_id, accepted=accept, payment=payment)
     product.save()
 
-
 def get_product_by_seller_id(request):
     seller = request.user.id
     product = Product.objects.filter(seller_id=seller)
-    for p in product:
+    product2 = product.exclude(accepted=True)
+    for p in product2:
         p.__setattr__("bids", Bids.objects.filter(Product_id=p.id))
     context = {
-        'product': product
+        'product': product2
     }
     if request.method == 'POST':
         prod_id = request.POST.get('id')

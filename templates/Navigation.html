@@ -11,12 +11,12 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>-->
-        <div class="input-group">
+        <!--<div class="input-group">
             <input type="search" class="form-control" id="search-box" placeholder ="Enter your search.."/>
             <div class="input-group-btn">
                 <button type="button" id="search-btn" class="btn btn-default">Search</button>
             </div>
-        </div>
+        </div>-->
           {% if user.is_authenticated %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -54,12 +54,13 @@
                     <li class="nav-item">
                   <a class="nav-link" href="{% url 'register' %}">Register</a>
                    </li>
-
           {% endif %}
+            <a href="#"><i class="fa fa-fw fa-search"></i></a>
       </ul>
+
         <! --hér er gamli search barinn!! -->
         {% if user.is_authenticated %}
-            <img src="{{ user.profile.profile_image }}" class="profile-image" />
+            <img src="{{ user.profile.profile_image }}" class="profile-image img-thumbnail" id = "profileimg"/>
         {% endif %}
 
     </div>

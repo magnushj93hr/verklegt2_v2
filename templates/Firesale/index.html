@@ -2,6 +2,12 @@
 {% block content %}
     <h1></h1>
     <div class="firesale">
+        <div class="input-group">
+        <input type="search" class="form-control" id="search-box" placeholder ="Enter your search.."/>
+        <div class="input-group-btn">
+            <button type="button" id="search-btn" class="btn btn-default">Search</button>
+        </div>
+        </div>
         {% for category in categories %}
             {% include 'firesale/single_category.html' with category=category %}
         {% endfor %}

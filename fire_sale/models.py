@@ -49,7 +49,7 @@ class ProductImage(models.Model):
 class Rating(models.Model):
     Grade = models.IntegerField(
         validators=[
-            MinValueValidator(1),
+            MinValueValidator(0),
             MaxValueValidator(10)
         ])
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -241,6 +241,11 @@ def push_notification(request):
     context = {
         'notifications': notifications,
     }
+
+    if request.method =='POST':
+        notif_id = request.POST.get('id')
+        Notification.objects.filter(pk=notif_id).update(seen=True)
+
     return render(request, 'firesale/notifications.html', context)
 
 

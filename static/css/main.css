@@ -20,6 +20,10 @@
     display: inline-block;
 }
 
+.float_left {
+    float: left;
+}
+
 .category {
     margin: 5%;
     width: 100%;

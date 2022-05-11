@@ -184,27 +184,26 @@ def get_product_by_seller_id(request):
     if request.method == 'POST':
         prod_id = request.POST.get('id')
         product = Product.objects.get(pk=prod_id)
-        bidders = []
+        bidders = set()
         buyer_email = ""
         products = Bids.objects.filter(Product_id=prod_id)
-        # gera if setningu ef það er engin prod í products:!!!!!!!
+
+        buyer_id = ""
         for prod in products:
             if prod.Amount == product.price:
                 buyer_id = prod.Bid_user_id
-
-            else:
-                bidders.append(prod.Bid_user_id)
-        # pósta í notification töfluna öllum þessum notification
-        # pósta því svo á notenda síðuna.
+        for prod in products:
+            if prod.Bid_user_id != buyer_id:
+                bidders.add(prod.Bid_user_id)
         notification = Notification(seen=False,
                                     message="Your bid has been accepted, please proceed to My Bids for payment",
-                                    buyer_id=buyer_id, product_id=product)
+                                    buyer_id=buyer_id, product_id=product.id)
         notification.save()
         for bidder in bidders:
             not_accepted_not = Notification(seen=False, message="Your bid has not been accepted", buyer_id=bidder,
-                                            product_id=product)
+                                            product_id=product.id)
             not_accepted_not.save()
-        push_notification() #hafa með eða ekki??
+        push_notification(request) #hafa með eða ekki??
 
         update_accept(request, prod_id)
 
@@ -212,9 +211,11 @@ def get_product_by_seller_id(request):
 
 
 def push_notification(request):
-    #
     user_id = request.user.id
     notifications = Notification.objects.filter(buyer_id=user_id)
+    for notif in notifications:
+        notif.__setattr__('product', Product.objects.filter(id=notif.id))
+
     context = {
         'notifications': notifications,
     }

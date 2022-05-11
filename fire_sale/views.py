@@ -151,7 +151,7 @@ def rating_view(request):
             return redirect('Firesale-index')
     else:
         form = RatingForm()
-    return render(request, 'firesale/give_rating.html',{
+    return render(request, 'firesale/give_rating.html', {
             'form': form
         })
 
@@ -177,7 +177,6 @@ def get_product_by_seller_id(request):
     product = Product.objects.filter(seller_id=seller)
     for p in product:
         p.__setattr__("bids", Bids.objects.filter(Product_id=p.id))
-        print(p.bids)
     context = {
         'product': product
     }
@@ -195,7 +194,6 @@ def get_product_by_seller_id(request):
         for prod in products:
             if prod.Bid_user_id != buyer_id:
                 bidders.add(prod.Bid_user_id)
-
         notification = Notification(seen=False,
                                     message="Your bid has been accepted, please proceed to My Bids for payment",
                                     buyer_id=buyer_id, product_id=product.id)

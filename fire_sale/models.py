@@ -137,6 +137,6 @@ class PaymentInformation(models.Model):
 
 class Notification(models.Model):
     seen = models.BooleanField(default=False),
-    message = models.CharField(max_length=255, default='Your bid has been accepted, please proceed to My Bids for payment'),
-    buyer_id = models.ForeignKey(User, on_delete=models.CASCADE),
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    message = models.CharField(max_length=255),
+    buyer = models.ForeignKey(User, on_delete=models.CASCADE),
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)

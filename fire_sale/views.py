@@ -68,6 +68,9 @@ def create_product(request):
 def get_contact_information(request):
     new_value = request.GET.get('id')
     if new_value:
+        temp = Product.objects.filter(id=new_value)
+        for i in temp:
+            request.session['seller_id'] = i.seller_id
         request.session['product_id'] = new_value
     if request.method == 'POST':
         form = ContactInformationCreateForm(data=request.POST)
@@ -148,7 +151,7 @@ def rating_view(request):
         print(form.errors)
         if form.is_valid():
             grade = form.cleaned_data.get('Grade')
-            user_id = request.user.id
+            user_id = request.session['seller_id']
             rating = Rating(Grade=grade, user_id=user_id)
             rating.save()
             return redirect('Firesale-index')
@@ -171,7 +174,8 @@ def update_average_rating(request):
     for key, val in my_dict.items():
         my_dict[key] = sum(val)/len(val)
     for key, val in my_dict.items():
-        Profile.objects.filter(user_id=key).update(avg=val)
+        print(val)
+        Profile.objects.filter(user_id=key).update(avg=round(val, 1))
 
 
 def update_payment(request, id):

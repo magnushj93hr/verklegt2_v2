@@ -191,6 +191,7 @@ def get_product_by_seller_id(request):
         for prod in products:
             if prod.Amount == product.price:
                 buyer_id = prod.Bid_user_id
+
             else:
                 bidders.append(prod.Bid_user_id)
         # pósta í notification töfluna öllum þessum notification

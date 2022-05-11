@@ -150,7 +150,7 @@ def rating_view(request):
             return redirect('Firesale-index')
     else:
         form = RatingForm()
-    return render(request, 'firesale/give_rating.html',{
+    return render(request, 'firesale/give_rating.html', {
             'form': form
         })
 

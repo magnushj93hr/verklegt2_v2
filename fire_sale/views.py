@@ -12,8 +12,11 @@ from fire_sale.models import ProductImage
 from fire_sale.models import Product
 from django.core.mail import send_mail
 
+from user.models import Profile
+
 
 def index(request):
+    update_average_rating(request)
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         products = [{
@@ -154,6 +157,21 @@ def rating_view(request):
     return render(request, 'firesale/give_rating.html', {
             'form': form
         })
+
+
+def update_average_rating(request):
+    temp = Rating.objects.all()
+    my_dict = {}
+    for i in temp:
+        if i.user_id not in my_dict:
+            my_dict[i.user_id] = []
+            my_dict[i.user_id].append(i.Grade)
+        else:
+            my_dict[i.user_id].append(i.Grade)
+    for key, val in my_dict.items():
+        my_dict[key] = sum(val)/len(val)
+    for key, val in my_dict.items():
+        Profile.objects.filter(user_id=key).update(avg=val)
 
 
 def update_payment(request, id):

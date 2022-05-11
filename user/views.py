@@ -18,8 +18,6 @@ def register(request):
 
 
 def profile(request):
-    current_user = request.user
-    print(current_user.username)
     profile = Profile.objects.filter(user=request.user).first() #hvaða fyrstu færslu?
     if request.method == 'POST':
         form = ProfileForm(instance=profile, data=request.POST)

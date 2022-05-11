@@ -1,6 +1,7 @@
-<div class="category">
+<div class="col-sm-12 col-md-6 col-lg-4">
     <a href="/catalog/{{ category.id }}?sort_by=name" id="linkwithoutline">
         <div class="category-box">
+            <img src="{{ category.image.url }}" class="img-fluid" alt="...">
         <h4 class="category-text">{{ category.name }}</h4>
         </div>
     </a>

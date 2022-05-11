@@ -8,8 +8,9 @@
     <div class="row">
        {% for item in product %} <!-- prefetch -->
            {% if item.accepted != True%}
-            {% include 'catalog/single_product.html' with item=item %}
+            {% include 'catalog/single_product.html' with item=item%}
            {% endif %}
        {% endfor %}
     </div>
 {% endblock %}
+

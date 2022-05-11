@@ -175,7 +175,7 @@ def update_average_rating(request):
         my_dict[key] = sum(val)/len(val)
     for key, val in my_dict.items():
         print(val)
-        Profile.objects.filter(user_id=key).update(avg=val)
+        Profile.objects.filter(user_id=key).update(avg=round(val, 1))
 
 
 def update_payment(request, id):

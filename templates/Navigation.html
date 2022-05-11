@@ -30,7 +30,7 @@
               </ul>
             {% endif %}
         </li><li class="nav-item">
-          <a class="nav-link" href="#">Notifications</a>
+          <a class="nav-link" href="{% url 'push_notification' %}">Notifications</a>
         </li>
         <li class="nav-item">
             {% if user.is_authenticated %}
@@ -40,7 +40,24 @@
           <li class="nav-item">
           <a class="nav-link" href="#">My Profile</a>
         </li>-->
-          {% if user.is_authenticated %}
+          <!--{% if user.is_authenticated %}
+                    <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                   </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                  </li>
+              {% else %}
+                   <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">Login</a>
+                   </li>
+                    <li class="nav-item">
+                  <a class="nav-link" href="{% url 'register' %}">Register</a>
+                   </li>
+          {% endif %}-->
+      <li class ="nav-item">
+            <a class= "nav-link" href="{% url 'Firesale-index' %}"><i class="fa fa-fw fa-search"></i></a></li>
+        {% if user.is_authenticated %}
                     <li class="nav-item">
                   <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                    </li>
@@ -55,10 +72,7 @@
                   <a class="nav-link" href="{% url 'register' %}">Register</a>
                    </li>
           {% endif %}
-      <li class ="nav-item">
-            <a class= "nav-link" href="{% url 'Firesale-index' %}"><i class="fa fa-fw fa-search"></i></a></li>
-      </ul>
-
+            </ul>
         <! --hér er gamli search barinn!! -->
         {% if user.is_authenticated %}
             <img src="{{ user.profile.profile_image }}" class="profile-image img-thumbnail" id = "profileimg"/>

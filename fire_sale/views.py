@@ -5,7 +5,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from fire_sale.forms.Rating_form import RatingForm
 from fire_sale.forms.Contact_info_form import ContactInformationCreateForm
 from fire_sale.forms.Payment_form import PaymentCreateForm
-from fire_sale.models import ProductCategory, Product, ContactInformation, PaymentInformation, Bids, Rating
+from fire_sale.models import ProductCategory, Product, ContactInformation, PaymentInformation, Bids, Rating, \
+    Notification
 from fire_sale.forms.product_form import ProductCreateForm
 from fire_sale.models import ProductImage
 from fire_sale.models import Product
@@ -174,7 +175,6 @@ def update_payment(request, id):
 def get_product_by_seller_id(request):
     seller = request.user.id
     product = Product.objects.filter(seller_id=seller)
-    print("hello")
     for p in product:
         p.__setattr__("bids", Bids.objects.filter(Product_id=p.id))
         print(p.bids)
@@ -184,29 +184,40 @@ def get_product_by_seller_id(request):
     if request.method == 'POST':
         prod_id = request.POST.get('id')
         product = Product.objects.get(pk=prod_id)
+        bidders = []
         buyer_email = ""
         products = Bids.objects.filter(Product_id=prod_id)
-        # gera if setningu ef það er engin prod í products:
+        # gera if setningu ef það er engin prod í products:!!!!!!!
         for prod in products:
             if prod.Amount == product.price:
                 buyer_id = prod.Bid_user_id
+            else:
+                bidders.append(prod.Bid_user_id)
+        # pósta í notification töfluna öllum þessum notification
+        # pósta því svo á notenda síðuna.
+        notification = Notification(seen=False,
+                                    message="Your bid has been accepted, please proceed to My Bids for payment",
+                                    buyer_id=buyer_id, product_id=product)
+        notification.save()
+        for bidder in bidders:
+            not_accepted_not = Notification(seen=False, message="Your bid has not been accepted", buyer_id=bidder,
+                                            product_id=product)
+            not_accepted_not.save()
+        push_notification() #hafa með eða ekki??
 
-        buyer = User.objects.get(pk=buyer_id)
-        buyer_email = buyer.email
-        # send_mail(
-        # 'Bid accepted',  # subject
-        # 'Your bid has been accepted. Please go to my bids to continue to payment.',  # message
-        # 'firesale@firesale.com',
-        # [buyer_email],
-        # False,
-        # None,
-        # None,
-        # None,
-        # None
-        # )
         update_accept(request, prod_id)
 
     return render(request, 'firesale/my_listings.html', context)
+
+
+def push_notification(request):
+    #
+    user_id = request.user.id
+    notifications = Notification.objects.filter(buyer_id=user_id)
+    context = {
+        'notifications': notifications,
+    }
+    return render(request, 'firesale/notifications.html', context)
 
 
 def update_accept(request, id):
@@ -222,18 +233,6 @@ def update_accept(request, id):
     product = Product(id=id, name=name, description=description, price=price, condition=condition, image=image,
                       category_id=category_id, seller_id=seller_id, accepted=accept)
     product.save()
-
-
-# þarf að ná í id-ið af vörunni
-# þarf að finna kaupandann sem er með hæsta boðið.
-## þurfum að gera þannig að það sé ekki hægt að bidda sama verð
-# gera ef product id er ekki í bids þá ekki setja takkann.
-# appenda emailum í lista til að senda multiples
-
-
-# HVERNIG GET ÉG GERT IF SKIPUN SEM ER FYRIR EF ÞETTA PRODUCT ID ER I BIDS FILENUM?
-# REGISTRATION FORM SETJA EMAIL
-# GET EKKI SEARCHAÐ ÞEGAR EG ER INNI MY LISTINGS
 
 
 def get_my_bids(request):

@@ -144,12 +144,13 @@ def rating_view(request):
         print(form.errors)
         if form.is_valid():
             grade = form.cleaned_data.get('Grade')
-            rating = Rating(Grade=grade)
+            user_id = request.user.id
+            rating = Rating(Grade=grade, user_id=user_id)
             rating.save()
-        return redirect('rating_view')
+            return redirect('Firesale-index')
     else:
         form = RatingForm()
-        return render(request, 'firesale/give_rating.html',{
+    return render(request, 'firesale/give_rating.html',{
             'form': form
         })
 

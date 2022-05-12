@@ -55,15 +55,24 @@
     background-color: orange;
 }
 
-.cat-image {
-    height: 100%;
-}
 
 .orange-background {
     background-color: orange;
     margin: 10px;
 }
 
+.cat-image-container {
+    height: 170px;
+}
+
+.cat-image {
+    height:100%;
+    max-width: 170px;
+}
+
+.card-box {
+    height:100%;
+}
 
 .white-text {
     color: white;

@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from fire_sale.models import Product, Bids
+from fire_sale.models import Product, Bids, Favourites
 from product.forms.bid_form import PostBidForm
 # Create your views here.
 
@@ -75,3 +75,15 @@ def update_price(request, id, amount):
     seller_id = product.seller_id
     product = Product(id=id, name=name, description=description, price=price, condition=condition, image=image, category_id=category_id, seller_id=seller_id)
     product.save()
+
+
+def add_to_favorite(request):
+    product_id = request.POST.get('product_id')
+    user_id = request.user
+    items = Favourites.objects.filter(user_id=user_id)
+    items2 = items.filter(product_id=product_id)
+    if items2:
+        items2.delete()
+    else:
+        Favourites.objects.create(product_id=product_id, user=user_id)
+    return redirect('Firesale-index')

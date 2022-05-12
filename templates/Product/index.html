@@ -11,11 +11,12 @@
         <input type="submit" value="Place bid" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0"/>
     </form>
     <h4>Similar products:</h4>
-    {% for item in similarproducts %} <!-- prefetch -->
-        {% if item.accepted != True%}
-        {% include 'Product/similarprod.html' with item=item%}
-        {% endif %}
+    <div class="row gy-3">
+       {% for item in similarproducts %} <!-- prefetch -->
+           {% if item.accepted != True%}
+            {% include 'product/similarprod.html' with item=item%}
+           {% endif %}
        {% endfor %}
-
+    </div>
     </div>
 {% endblock %}

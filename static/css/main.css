@@ -59,6 +59,21 @@
     height: 100%;
 }
 
+.orange-background {
+    background-color: orange;
+    margin: 10px;
+}
+
+
+.white-text {
+    color: white;
+
+}
+.white-text:hover {
+    color: black;
+
+}
+
 
 .container {
     margin-bottom: 5em;

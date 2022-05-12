@@ -77,7 +77,7 @@
             </ul>
         <!--hér er gamli search barinn!! -->
         {% if user.is_authenticated %}
-            {% if user.profile.avg != '0' %}
+            {% if user.profile.avg != 0 %}
                 <p>{{ user.profile.avg }}</p>
                 {% else %}
                 <p>No rating yet!</p>

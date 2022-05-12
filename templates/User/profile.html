@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>Profile</h1>
+        <form action="{% url 'change_name' %}" method="Post">
+        {% csrf_token %}
+            <label for="new_name">Change your name: </label>
+            <input id="new_name" type="text" name="new_name" value="{{request.user}}">
+            <input type="submit" value="Change">
+        </form>
     <form class="form form-horizontal" method="post">
         {% csrf_token %}
     {{ form }}

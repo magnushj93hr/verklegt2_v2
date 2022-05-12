@@ -1,4 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.forms import forms
 from django.shortcuts import render, redirect
 
 from user.forms.profile_form import ProfileForm
@@ -32,3 +34,12 @@ def profile(request):
     })
 
 
+def change_name(request):
+    new_name = request.POST.get('new_name')
+
+    if User.objects.filter(username=new_name).exists():
+        raise forms.ValidationError('Username "%s" is not available.' % new_name)
+    user = request.user
+    user.username = new_name
+    user.save()
+    return redirect('profile')

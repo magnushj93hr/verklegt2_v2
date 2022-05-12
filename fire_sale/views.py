@@ -174,7 +174,7 @@ def update_average_rating(request):
     for key, val in my_dict.items():
         my_dict[key] = sum(val)/len(val)
     for key, val in my_dict.items():
-        print(val)
+        # print(key, val)
         Profile.objects.filter(user_id=key).update(avg=round(val, 1))
 
 
@@ -192,6 +192,7 @@ def update_payment(request, id):
     product = Product(id=id, name=name, description=description, price=price, condition=condition, image=image,
                       category_id=category_id, seller_id=seller_id, accepted=accept, payment=payment)
     product.save()
+
 
 def get_product_by_seller_id(request):
     seller = request.user.id

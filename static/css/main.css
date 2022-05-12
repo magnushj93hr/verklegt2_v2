@@ -49,6 +49,10 @@
     border-radius: 50%;
 }
 
+.catalog {
+    display: flex;
+}
+
 .container {
     margin-bottom: 5em;
     min-height: 100%;

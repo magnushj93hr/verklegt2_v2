@@ -71,3 +71,17 @@
     height: 2em;
     width: 100%;
 }
+
+.notification-container {
+    padding: 20px;
+}
+
+.notification-container.seen {
+    display: none;
+}
+
+.notification-container.seen > button[type="submit"] {
+    cursor: none;
+    pointer-events: none;
+    opacity: .5;
+}

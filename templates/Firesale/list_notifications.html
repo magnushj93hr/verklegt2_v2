@@ -3,15 +3,17 @@
 {#    <h4>{{ notification.product.name }}</h4><!-- Gera flottan lit -->#}
 {#        <img src="{{ notification.product.image }}" />#}
 
-    <form class="form form-horizontal" method="POST">
-        {% if notification.seen == False %}
-         <p>{{ notification.message }}</p>
+        <form class="form form-horizontal" method="POST">
+            <div class="notification-container {% if notification.seen == True %}seen{% endif %}">
+                <p>{{ notification.message }}</p>
 
-        {% csrf_token %}
-        {{ form }}
-        <input type='hidden' value='{{ notification.id }}' name='id'>
-        <input type="submit" value="Mark as seen" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0"/>
-        {% endif %}
+                {% csrf_token %}
+                {{ form }}
+                <input type='hidden' value='{{ notification.id }}' name='id'>
+                <button type="submit" class="btn btn-primary">
+                    Mark as seen
+                </button>
+            </div>
         </form>
     </div>
 

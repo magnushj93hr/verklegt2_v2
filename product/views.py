@@ -80,5 +80,10 @@ def update_price(request, id, amount):
 def add_to_favorite(request):
     product_id = request.POST.get('product_id')
     user_id = request.user
-    Favourites.objects.create(product_id=product_id, user=user_id)
+    items = Favourites.objects.filter(user_id=user_id)
+    items2 = items.filter(product_id=product_id)
+    if items2:
+        items2.delete()
+    else:
+        Favourites.objects.create(product_id=product_id, user=user_id)
     return redirect('Firesale-index')

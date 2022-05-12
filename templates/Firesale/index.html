@@ -5,6 +5,16 @@
     <div class="input-group-btn">
         <button type="button" id="search-btn" class="btn btn-default">Search</button>
     </div>
+        <script>
+            let msg = document.getElementById("search-box");
+            let button = document.getElementById("search-btn");
+            msg.addEventListener("keypress", function(event){
+
+            if (event.keyCode == 13) {
+                button.click();
+            }
+            });
+        </script>
     </div>
     <h1></h1>
     <div class="row" id="firesale">

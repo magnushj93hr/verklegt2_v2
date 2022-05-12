@@ -7,7 +7,7 @@ $(document).ready(function(){
             type: 'GET',
             success: function(resp){
                 var newHtml = resp.data.map(d => {
-                    return `<div class="well category"> 
+                    return `<div id="well category"> 
                             <a href="/product/${d.id}"> 
                             <img src ="${d.image}" />
                             <h4>${d.name}</h4>
@@ -16,7 +16,7 @@ $(document).ready(function(){
                             </a>
                         </div>`
                 });
-                $('.firesale').html(newHtml.join(''));
+                $('#firesale').html(newHtml.join(''));
                 $('#search-box').val('');
             },
 // TODO: bæta við price fyrir ofan..
@@ -28,9 +28,3 @@ $(document).ready(function(){
     });
 });
 
-
-
-//þarf að gera get request fyrir að ná í allt og svo nota það url með search filter.
-//þarf að finna réttan stað (view) til að setja það get request inn.
-//SP. TA: við erum með öðruvísi til að fá allt upp (því við skiptum í catagoríur stax),
-// er samt ekki í lagi að búa til ajax req líka?

@@ -11,9 +11,9 @@
             {% endfor %}
         </ul>
         {% endif %}
-        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-primary">Back</a>
         <a href="{% url 'rating_view'%}">
-    <input type="submit" value="Next" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0">
-            </a>
+            <input type="submit" value="Give rating" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0">
+        </a>
     </form>
+    <a href="{% url 'Firesale-index' %}" class="btn btn-primary">Skip</a>
 {% endblock %}

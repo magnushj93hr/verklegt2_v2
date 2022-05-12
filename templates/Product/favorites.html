@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1> Favorites </h1>
+    <div class="row row-cols-1 row-cols-md-2 g-4" style="margin-top: 0px;">
+       {% for item in item_list %} <!-- prefetch -->
+               {% include 'catalog/single_product.html' with item=item%}
+       {% endfor %}
+    </div>
+{% endblock %}

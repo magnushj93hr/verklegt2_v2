@@ -16,7 +16,7 @@ from user.models import Profile
 
 
 def index(request):
-    update_average_rating(request)
+    #update_average_rating(request)
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         products = [{
@@ -26,7 +26,7 @@ def index(request):
             'price': x.price,
             'image': x.image,
 
-        } for x in Product.objects.filter(name__icontains=search_filter)]
+        } for x in Product.objects.filter(name__icontains=search_filter, accepted=False)]
         return JsonResponse({'data': products})
     product = Product.objects.all()
     category = ProductCategory.objects.all().order_by('name')
@@ -237,6 +237,10 @@ def get_product_by_seller_id(request):
 
 
 def push_notification(request):
+    if request.method == 'POST':
+        notif_id = request.POST.get('id')
+        Notification.objects.filter(pk=notif_id).update(seen=True)
+
     user_id = request.user.id
     notifications = Notification.objects.filter(buyer_id=user_id)
     for notif in notifications:
@@ -245,10 +249,6 @@ def push_notification(request):
     context = {
         'notifications': notifications,
     }
-
-    if request.method =='POST':
-        notif_id = request.POST.get('id')
-        Notification.objects.filter(pk=notif_id).update(seen=True)
 
     return render(request, 'firesale/notifications.html', context)
 

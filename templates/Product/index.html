@@ -6,10 +6,12 @@
     <p>{{ product.condition }}</p>
     <img src="{{ product.image }}" />
     <form class="form form-horizontal" method="POST">
+    {% if request.user.id != product.seller_id %}
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Place bid" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0"/>
     </form>
+    {% endif %}
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}

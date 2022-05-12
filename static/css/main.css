@@ -101,3 +101,16 @@
     pointer-events: none;
     opacity: .5;
 }
+
+ul.messages {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+ul.messages > li {
+    padding: 20px;
+    background-color: #FE6D73;
+    border-bottom: solid 6px #FF444B;
+    color: white;
+}

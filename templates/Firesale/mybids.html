@@ -8,14 +8,6 @@
     <form class="form form-horizontal" method="POST">
     {% csrf_token %}
     {{ form }}
-        {% if messages %}
-        <!-- Error message sender -->
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
     {% if product.accepted == True %}
      <a href="{% url 'contact_information' %}?id={{ product.id }}" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0">Pay</a>
     {% else %}

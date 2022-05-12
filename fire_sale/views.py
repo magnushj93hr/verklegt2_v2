@@ -16,7 +16,7 @@ from user.models import Profile
 
 
 def index(request):
-    #update_average_rating(request)
+    update_average_rating(request)
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         products = [{
@@ -30,9 +30,11 @@ def index(request):
         return JsonResponse({'data': products})
     product = Product.objects.all()
     category = ProductCategory.objects.all().order_by('name')
+    current_users = request.user.id
     context = {
         'categories': category,
-        'product': product
+        'product': product,
+        'current_users': current_users
     }
     return render(request, 'firesale/index.html', context)
 
@@ -221,11 +223,11 @@ def get_product_by_seller_id(request):
             if prod.Bid_user_id != buyer_id:
                 bidders.add(prod.Bid_user_id)
         notification = Notification(seen=False,
-                                    message="Your bid has been accepted, please proceed to My Bids for payment",
+                                    message=f"Your bid has been accepted {product.name} please proceed to My Bids for payment",
                                     buyer_id=buyer_id, product_id=product.id)
         notification.save()
         for bidder in bidders:
-            not_accepted_not = Notification(seen=False, message="Your bid has not been accepted", buyer_id=bidder,
+            not_accepted_not = Notification(seen=False, message=f"Your bid for {product.name} has not been accepted", buyer_id=bidder,
                                             product_id=product.id)
             not_accepted_not.save()
         push_notification(request) #hafa með eða ekki??

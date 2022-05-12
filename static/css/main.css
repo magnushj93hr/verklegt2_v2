@@ -83,6 +83,10 @@
 
 }
 
+.prod-image{
+    max-height: 300px;
+    max-width: 100%;
+}
 
 .container {
     margin-bottom: 5em;

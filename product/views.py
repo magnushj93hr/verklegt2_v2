@@ -39,8 +39,7 @@ def place_bid(request, id):
             or lower to the current amount
             '''
             messages.add_message(request, messages.INFO, 'Bid to low')
-            return HttpResponseRedirect(request.path_info)
-        if form.is_valid():
+        elif form.is_valid():
             '''
             Send form to update price if valid
             '''
@@ -51,7 +50,9 @@ def place_bid(request, id):
             bid_placed.save()
             # request.method = 'GET'
             update_price(request, id, amount)
-            return HttpResponseRedirect(request.path_info)
+            return render(request, 'product/message_after_placebid.html', context)
+
+            #return HttpResponseRedirect(request.path_info)
     else: #TODO taka út?
         pass
     return render(request, 'product/index.html', context)

@@ -16,7 +16,7 @@ from user.models import Profile
 
 
 def index(request):
-    #update_average_rating(request)
+    update_average_rating(request)
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         products = [{
@@ -30,9 +30,11 @@ def index(request):
         return JsonResponse({'data': products})
     product = Product.objects.all()
     category = ProductCategory.objects.all().order_by('name')
+    current_users = request.user.id
     context = {
         'categories': category,
-        'product': product
+        'product': product,
+        'current_users': current_users
     }
     return render(request, 'firesale/index.html', context)
 

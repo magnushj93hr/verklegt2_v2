@@ -32,6 +32,9 @@ def place_bid(request, id):
     print(product)
 
     if request.method == 'POST':
+        if product.seller_id == request.user.id: #Bæta bið pop up eða eitthvað slíkt
+            messages.add_message(request, messages.INFO, 'Thats your own bid!')
+            return HttpResponseRedirect(request.path_info)
         form = PostBidForm(data=request.POST)
         if product.price >= int(request.POST["Amount"]):
             ''' 

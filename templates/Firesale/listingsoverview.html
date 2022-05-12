@@ -1,10 +1,10 @@
 {% block content %}
-    <div>
+    <div class="col-sm-12 col-md-6 col-lg-4">
     <h4>{{ product.name }}</h4><!-- Gera flottan lit -->
     <p>{{ product.description }}</p>
     <p>{{ product.price }}</p>
     <p>{{ product.condition }}</p>
-    <img src="{{ product.image }}" />
+    <img src="{{ product.image }}" class="prod-image" />
     <form class="form form-horizontal" method="POST">
     {% csrf_token %}
     {{ form }}
@@ -18,7 +18,7 @@
         {% endif %}-->
     {% if product.bids %}
         <input type='hidden' value='{{ product.id }}' name='id'>
-        <input type="submit" value="Accept bid" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0"/>
+        <input type="submit" value="Accept bid" class="btn btn-primary" style="clear:both; margin: 10px 0"/>
     {% else %}
         <p>Sorry, you have no bids :-( </p>
     {% endif %}

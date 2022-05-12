@@ -22,14 +22,14 @@ def get_product_by_id(request, id):
 def place_bid(request, id):
     product = Product.objects.get(pk=id)  # select product prefetch / einhvernstaðar
     other_products = Product.objects.filter(category_id=product.category_id) #þarf að mínusa frá þá vöru sem er...
-    other_products2 = other_products.exclude(id=product.id)[:3]
+    other_products2 = other_products.filter(accepted=False)
+    other_products3 = other_products2.exclude(id=product.id)[:3]
     form = PostBidForm()
     context = {
         'product': product,
-        'similarproducts': other_products2,
+        'similarproducts': other_products3,
         'form': form
     }
-    print(product)
 
     if request.method == 'POST':
         if product.seller_id == request.user.id: #Bæta bið pop up eða eitthvað slíkt

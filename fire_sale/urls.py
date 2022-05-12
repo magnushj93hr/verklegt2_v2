@@ -12,4 +12,5 @@ urlpatterns = [
     path('view_payment', views.view_payment, name="view_payment"),
     path('rating_view', views.rating_view, name="rating_view"),
     path('push_notification', views.push_notification, name='push_notification'),
+    path('favorites', views.view_favorites, name='favorites'),
 ]

@@ -6,7 +6,7 @@ from fire_sale.forms.Rating_form import RatingForm
 from fire_sale.forms.Contact_info_form import ContactInformationCreateForm
 from fire_sale.forms.Payment_form import PaymentCreateForm
 from fire_sale.models import ProductCategory, Product, ContactInformation, PaymentInformation, Bids, Rating, \
-    Notification
+    Notification, Favourites
 from fire_sale.forms.product_form import ProductCreateForm
 from fire_sale.models import ProductImage
 from fire_sale.models import Product
@@ -283,7 +283,6 @@ def get_my_bids(request):
         product = Product.objects.filter(id=i)
         for elem in product:
             product_list.append(elem)
-
     context = {
         # 'bids': bids,
         'product': product_list
@@ -292,3 +291,21 @@ def get_my_bids(request):
         get_contact_information(request)
         # return render(request, 'firesale/contact_information.html')
     return render(request, 'firesale/listbids.html', context)
+
+
+def view_favorites(request):
+    item_list = []
+    current_user = request.user.id
+    favorite = Favourites.objects.filter(user_id=current_user)
+    for item in favorite:
+        item_list.append(item.product_id)
+    new_list = []
+    for product_id in item_list:
+        product = Product.objects.filter(id=product_id)
+        for elem in product:
+            new_list.append(elem)
+    print(new_list)
+    context = {
+        'item_list': new_list
+    }
+    return render(request, 'product/favorites.html', context)

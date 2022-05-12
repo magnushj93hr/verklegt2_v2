@@ -51,7 +51,13 @@
 
 .catalog {
     display: flex;
+    height: 150px;
 }
+
+.cat-image {
+    height: 100%;
+}
+
 
 .container {
     margin-bottom: 5em;

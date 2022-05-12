@@ -5,7 +5,7 @@
     {% else %}{% endif %}
     <a href="/catalog/{{ category.id }}?sort_by=price">Sort by price</a>
     <a href="/catalog/{{ category.id }}?sort_by=name">Sort by name</a>
-    <div class="row">
+    <div class="row gy-3">
        {% for item in product %} <!-- prefetch -->
            {% if item.accepted != True%}
             {% include 'catalog/single_product.html' with item=item%}

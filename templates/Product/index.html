@@ -10,6 +10,13 @@
         {{ form }}
         <input type="submit" value="Place bid" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0"/>
     </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <h4>Similar products:</h4>
     {% for item in similarproducts %} <!-- prefetch -->
         {% if item.accepted != True%}

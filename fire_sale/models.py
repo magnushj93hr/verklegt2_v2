@@ -14,8 +14,8 @@ class ProductCategory(models.Model):
 
 
 class Product(models.Model):
-    NEW = 'NE'
-    PREOWNED = 'PO'
+    NEW = 'NEW'
+    PREOWNED = 'Pre Owned'
     COND_CHOICES = [
         (NEW, 'New'),
         (PREOWNED, 'Pre Owned'),
@@ -29,7 +29,7 @@ class Product(models.Model):
     )
 
     condition = models.CharField(
-        max_length=2,
+        max_length=20,
         choices=COND_CHOICES,
         default=NEW,
     )

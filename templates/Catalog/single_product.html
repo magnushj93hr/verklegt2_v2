@@ -1,13 +1,16 @@
-<div class="col-12" id="well category">
-    <a href="/product/{{ item.id }}">
-        <div class="catalog border border-3 border-secondary d-flex justify-content-between">
-            <div class="cat-image">
-                <img src="{{ item.image }}" class="img-thumbnail cat-image" alt="...">
-            </div>
-            <h1 class="align-self-center">{{ item.name }}</h1><!-- Gera flottan lit -->
-            <h2 class="align-self-center">{{ item.price }}</h2>
-        </div>
+
+<div class="card mb-3 orange-background text-center border-secondary" style="max-width: 540px;">
+    <a href="/product/{{ item.id }}" class="text-decoration-none white-text">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ item.image }}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h1 class="card-title">{{ item.name }}</h1>
+        <h3 class="card-text">{{ item.price }}</h3>
+      </div>
+    </div>
+  </div>
     </a>
 </div>
-
-

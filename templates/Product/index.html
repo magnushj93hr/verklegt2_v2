@@ -20,11 +20,12 @@
     </ul>
     {% endif %}
     <h4>Similar products:</h4>
-    {% for item in similarproducts %} <!-- prefetch -->
-        {% if item.accepted != True%}
-        {% include 'Product/similarprod.html' with item=item%}
-        {% endif %}
+    <div class="row gy-3">
+       {% for item in similarproducts %} <!-- prefetch -->
+           {% if item.accepted != True%}
+            {% include 'product/similarprod.html' with item=item%}
+           {% endif %}
        {% endfor %}
-
+    </div>
     </div>
 {% endblock %}

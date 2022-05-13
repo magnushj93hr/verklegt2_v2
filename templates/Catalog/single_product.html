@@ -1,5 +1,5 @@
 
-<div class="card mb-3 orange-background text-center border-secondary" style="max-width: 540px;">
+<div class="card mb-3 orange-background text-center border-secondary" style="max-width: 638px;">
     <a href="/product/{{ item.id }}" class="text-decoration-none white-text">
   <div class="row g-0">
     <div class="col-md-4 cat-image-container">
@@ -11,7 +11,8 @@
         <h3 class="card-text">{{ item.price }}</h3>
           <form action="{% url 'add_to_favorite' %}" method="Post">
         {% csrf_token %}
-              <button type="submit" value="{{ item.id }},{{ request.path }}"  name="product_id" >Favorite</button>
+
+              <button type="submit" value="{{ item.id }},{{ request.path }}" class="btn btn-outline-dark" name="product_id" >Favorite</button>
 {#            <input id="{{ item.id }}" name="product_id" type="submit" value="{{ item.id }}">#}
         </form>
       </div>

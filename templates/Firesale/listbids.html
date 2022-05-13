@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1></h1>
-    <div>
+    <div class="row gy-5">
         {% for product in product %}
             {% if product.payment != True %}
                 {% include 'firesale/mybids.html' with product=product %}

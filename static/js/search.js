@@ -7,14 +7,14 @@ $(document).ready(function(){
             type: 'GET',
             success: function(resp){
                 var newHtml = resp.data.map(d => {
-                    return `<div id="well category"> 
-                            <a href="/product/${d.id}"> 
-                            <img src ="${d.image}" />
-                            <h4>${d.name}</h4>
-                            <p>${d.description}</p>
-                            
-                            </a>
-                        </div>`
+                    return `<div class="col-sm-12 col-md-6 col-lg-4">
+                                <a href="/product/${d.id}" class="text-decoration-none text-center"> 
+                                    <div class="card card-box" id="well category"> 
+                                        <img src="${d.image}" class="card-img-top prod-image" />
+                                        <h4 class="card-title">${d.name}</h4>
+                                    </div>
+                                 </a>
+                            </div>`
                 });
                 $('#firesale').html(newHtml.join(''));
                 $('#search-box').val('');

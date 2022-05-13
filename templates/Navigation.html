@@ -48,11 +48,12 @@
         <a class= "nav-link" href="{% url 'Firesale-index' %}"><i class="fa fa-fw fa-search"></i></a></li>
 
                 <!-- Hér er heart táknið: -->
-                <li class ="nav-item"><a class= "nav-link" href="{% url 'favorites' %}">
+
+        {% if user.is_authenticated %}
+            <li class ="nav-item"><a class= "nav-link" href="{% url 'favorites' %}">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                 </svg></a></li> <!-- hér endar heart táknið -->
-        {% if user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                    </li>
@@ -71,7 +72,7 @@
             {% if user.profile.avg > 0 %}
                 <li class="nav-item"><a class="nav-link">{{ user.profile.avg }}</a></li>
             {% else %}
-                <p>No rating yet!</p>
+                <li class="nav-item"><a class="nav-link">No rating yet!</a></li>
             {% endif %}
             </ul>
         <!--hér er gamli search barinn!! -->

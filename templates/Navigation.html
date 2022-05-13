@@ -68,11 +68,11 @@
                    </li>
           {% endif %}
               {% if user.is_authenticated %}
-            {% if user.profile.avg != 0 %}
+            {% if user.profile.avg > 0 %}
                 <li class="nav-item"><a class="nav-link">{{ user.profile.avg }}</a></li>
-                {% else %}
+            {% else %}
                 <p>No rating yet!</p>
-                {% endif %}
+            {% endif %}
             </ul>
         <!--hér er gamli search barinn!! -->
 

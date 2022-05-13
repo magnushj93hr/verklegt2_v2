@@ -1,18 +1,22 @@
 {% block content %}
-    <div>
-    <h4>{{ product.name }}</h4><!-- Gera flottan lit -->
-    <p>{{ product.description }}</p>
-    <p>{{ product.price }}</p>
-    <p>{{ product.condition }}</p>
-    <img src="{{ product.image }}" />
-    <form class="form form-horizontal" method="POST">
-    {% csrf_token %}
-    {{ form }}
-    {% if product.accepted == True %}
-     <a href="{% url 'contact_information' %}?id={{ product.id }}" class="btn btn-outline-dark pull-right" style="clear:both; margin: 10px 0">Pay</a>
-    {% else %}
-        <p>Your bid has not been accepted</p>
-    {% endif %}
-    </form>
+    <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="card card-box">
+        <img src="{{ product.image }}" class="card-img-top prod-image" />
+            <div class="card-body">
+                <h4 class="card-title">{{ product.name }}</h4><!-- Gera flottan lit -->
+                <p class="card-text">{{ product.description }}</p>
+                <p class="card-text">{{ product.price }}</p>
+                <p class="card-text">{{ product.condition }}</p>
+                <form class="form form-horizontal" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                {% if product.accepted == True %}
+                 <a href="{% url 'contact_information' %}?id={{ product.id }}" class="btn btn-outline-dark" style="clear:both; margin: 10px 0">Pay</a>
+                {% else %}
+                    <p>Your bid has not been accepted</p>
+                {% endif %}
+                </form>
+            </div>
+        </div>
     </div>
 {% endblock %}

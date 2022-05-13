@@ -18,6 +18,8 @@
 
 .category-box {
     display: inline-block;
+    height: 350px;
+    width: 100%;
 }
 
 .float_left {
@@ -70,6 +72,10 @@
     max-width: 170px;
 }
 
+.catagory-image{
+    height: 285px;
+}
+
 .card-box {
     height:100%;
 }
@@ -97,8 +103,17 @@
 .footer {
     position: fixed;
     bottom: 0;
-    height: 2em;
     width: 100%;
+}
+
+.front-footer {
+    height: 3em;
+    background-color: orange;
+}
+
+.back-footer{
+    height: 4em;
+    background-color: darkorange;
 }
 
 .notification-container {

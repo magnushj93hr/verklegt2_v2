@@ -1,28 +1,32 @@
 {% block content %}
     <div class="col-sm-12 col-md-6 col-lg-4">
-    <h4>{{ product.name }}</h4><!-- Gera flottan lit -->
-    <p>{{ product.description }}</p>
-    <p>{{ product.price }}</p>
-    <p>{{ product.condition }}</p>
-    <img src="{{ product.image }}" class="prod-image" />
-    <form class="form form-horizontal" method="POST">
-    {% csrf_token %}
-    {{ form }}
-        <!--{% if messages %}
+        <div class="card card-box">
+            <img src="{{ product.image }}" class="card-img-top prod-image" />
+            <div class="card-body">
+                <h4 class="card-title">{{ product.name }}</h4><!-- Gera flottan lit -->
+                <p class="card-text">{{ product.description }}</p>
+                <p class="card-text">{{ product.price }}</p>
+                <p class="card-text">{{ product.condition }}</p>
+                <form class="form form-horizontal" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                    <!--{% if messages %}
 
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}-->
-    {% if product.bids %}
-        <input type='hidden' value='{{ product.id }}' name='id'>
-        <input type="submit" value="Accept bid" class="btn btn-outline-dark" style="clear:both; margin: 10px 0"/>
-    {% else %}
-        <p>Sorry, you have no bids :-( </p>
-    {% endif %}
-    <!-- ef product er ekki í bid, þá -->
-    </form>
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}-->
+                {% if product.bids %}
+                    <input type='hidden' value='{{ product.id }}' name='id'>
+                    <input type="submit" value="Accept bid" class="btn btn-outline-dark" style="clear:both; margin: 10px 0"/>
+                {% else %}
+                    <p>Sorry, you have no bids :-( </p>
+                {% endif %}
+                <!-- ef product er ekki í bid, þá -->
+                </form>
+            </div>
+        </div>
     </div>
 {% endblock %}

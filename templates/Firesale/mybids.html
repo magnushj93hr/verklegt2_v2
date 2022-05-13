@@ -9,9 +9,7 @@
                 <form class="form form-horizontal" method="POST">
                     {% csrf_token %}
                     {{ form }}
-                {{ product.highest_bidder }}
-                        {{ request.user.id }}
-                    {% if product.accepted == True %}}
+                    {% if product.accepted == True and product.highest_bidder == request.user.id %}
                         {{ product.highest_bidder }}
                         {{ request.user.id }}
                         <a href="{% url 'contact_information' %}?id={{ product.id }}" class="btn btn-outline-dark"

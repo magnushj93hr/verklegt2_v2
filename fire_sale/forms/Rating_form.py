@@ -7,6 +7,6 @@ class RatingForm(ModelForm):
     class Meta:
         exclude = ['user']
         model = Rating
-        widget = {
+        widgets = {
             'Grade': widgets.TextInput(attrs={'class': 'form-control'})
         }

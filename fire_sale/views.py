@@ -270,9 +270,10 @@ def update_accept(request, id):
     image = product.image
     category_id = product.category_id
     seller_id = product.seller_id
+    highest_bidder = product.highest_bidder
     accept = True
     product = Product(id=id, name=name, description=description, price=price, condition=condition, image=image,
-                      category_id=category_id, seller_id=seller_id, accepted=accept)
+                      category_id=category_id, seller_id=seller_id, accepted=accept, highest_bidder=highest_bidder)
     product.save()
 
 

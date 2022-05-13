@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>{{ category.name }}</h1>
-    {% if order == 'desc' %}
-    {% else %}{% endif %}
     <a href="/catalog/{{ category.id }}?sort_by=price">Sort by price</a>
     <a href="/catalog/{{ category.id }}?sort_by=name">Sort by name</a>
-    <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center" style="margin-top: 0px;">
+    <div class="row row-cols-1 row-cols-md-2 g-4" style="margin-top: 0px;">
        {% for item in product %} <!-- prefetch -->
            {% if item.accepted != True%}
                {% include 'catalog/single_product.html' with item=item%}

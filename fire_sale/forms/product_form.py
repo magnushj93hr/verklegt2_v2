@@ -10,7 +10,7 @@ class ProductCreateForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        exclude = ['id', 'seller', 'accepted', 'payment']
+        exclude = ['id', 'seller', 'accepted', 'payment', 'highest_bidder']
         widgets = {
             'name': widgets.TextInput(attrs={'class': 'form-control'}),
             'description': widgets.TextInput(attrs={'class': 'form-control'}),

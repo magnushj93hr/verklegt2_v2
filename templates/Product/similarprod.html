@@ -6,7 +6,8 @@
             </div>
             <div class="text-center flex-fill">
                 <h2 class="">{{ item.name }}</h2><!-- Gera flottan lit -->
-                <h3 class="">Highest bid: {{ item.price }}$</h3>
+                {% load humanize %}
+                <h3 class="">Highest bid: {{ item.price|intcomma }}$</h3>
             </div>
         </div>
     </a>

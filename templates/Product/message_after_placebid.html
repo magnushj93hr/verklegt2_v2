@@ -5,9 +5,12 @@
         <div class="card-header">Congratulations!</div>
         <div class="card-body text-dark">
             <h5 class="card-title">Bid placed</h5>
-            <p class="card-text">You have placed a bid for {{ product.name }}. You can see the product under My Bids.
+            <p class="card-text">You have placed a bid for {{ product.name }}. You can see the product under <a href="{% url 'my_bids'%}">My Bids</a>.
                 If your offer is accepted, you will be notified. </p>
-
+                    <a href="{% url 'Firesale-index' %}">
+            <button type="submit" class="btn btn-outline-dark pull-right" style="clear:both; margin: 10px 0">Ok
+            </button>
+        </a>
         </div>
     </div>
 

@@ -54,7 +54,7 @@ def place_bid(request, id):
             bid_placed = Bids(Amount=amount, Product_id=product_id, Bid_user_id=bid_user_id)
             bid_placed.save()
             # request.method = 'GET'
-            update_price(request, id, amount)
+            update_price(request, id, amount, bid_user_id)
             return render(request, 'product/message_after_placebid.html', context)
 
             # return HttpResponseRedirect(request.path_info)
@@ -63,7 +63,7 @@ def place_bid(request, id):
     return render(request, 'product/index.html', context)
 
 
-def update_price(request, id, amount):
+def update_price(request, id, amount, bid_user_id):
     '''
     Update the current amount if placed bid is larger
     '''
@@ -75,8 +75,10 @@ def update_price(request, id, amount):
     image = product.image
     category_id = product.category_id
     seller_id = product.seller_id
+    buyer_id = bid_user_id
     product = Product(id=id, name=name, description=description, price=price, condition=condition, image=image,
-                      category_id=category_id, seller_id=seller_id)
+                      category_id=category_id, seller_id=seller_id,
+                      highest_bidder=buyer_id)
     product.save()
 
 

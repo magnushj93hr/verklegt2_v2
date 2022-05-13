@@ -76,6 +76,8 @@ def get_contact_information(request):
         request.session['product_id'] = new_value
     if request.method == 'POST':
         form = ContactInformationCreateForm(data=request.POST)
+        print('not valid contact information')
+        print(form.errors)
         if form.is_valid():
             request.session['Full_name'] = form.cleaned_data.get('Full_name')
             request.session['Street_name'] = form.cleaned_data.get('Street_name')
@@ -101,6 +103,8 @@ def get_contact_information(request):
 def get_payment_information(request):
     if request.method == 'POST':
         form = PaymentCreateForm(data=request.POST)
+        print('not valid payment information')
+        print(form.errors)
         if form.is_valid():
             request.session['Name_of_cardholder'] = form.cleaned_data.get('Name_of_cardholder')
             request.session['card_number'] = form.cleaned_data.get('card_number')

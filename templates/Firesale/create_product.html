@@ -2,7 +2,42 @@
 {% block content %}
     <form class="form-horizontal" action="{%  url 'create_product' %}" method="post" style="display: table-caption;">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Create" class="btn btn-outline-dark" style="clear:both; margin: 10px 0"/>
+
+        <div class="fieldWrapper">
+        {{ form.name.errors }}
+        <label for="{{ form.name.id }}">Name: </label>
+        {{ form.name }}
+        </div>
+
+        <div class="fieldWrapper">
+        {{ form.description.errors }}
+        <label for="{{ form.description.id }}">Description: </label>
+        {{ form.name }}
+        </div>
+
+        <div class="fieldWrapper">
+        {{ form.category.errors }}
+        <label for="{{ form.category.id }}">Category: </label>
+        {{ form.category }}
+        </div>
+
+        <div class="fieldWrapper">
+        {{ form.price.errors }}
+        <label for="{{ form.price.id }}">Price: </label>
+        {{ form.name }}
+        </div>
+
+        <div class="fieldWrapper">
+        {{ form.condition.errors }}
+        <label for="{{ form.condition.id }}">Condition: </label>
+        {{ form.name }}
+        </div>
+
+        <div class="fieldWrapper">
+        {{ form.image.errors }}
+        <label for="{{ form.image.id }}">Image: </label>
+        {{ form.name }}
+        </div>
+
     </form>
 {% endblock %}

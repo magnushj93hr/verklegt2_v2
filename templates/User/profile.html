@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Profile</h1>
+    <h1>Edit Profile</h1>
+        <div class="form-group">
         <form action="{% url 'change_name' %}" method="Post">
         {% csrf_token %}
-            <label for="new_name">Change your name: </label>
-            <input id="new_name" type="text" name="new_name" value="{{request.user}}">
-            <input type="submit" value="Change">
+            <label for="new_name">Name: </label>
+            <input class="form-control" id="new_name" type="text" name="new_name" value="{{request.user}}">
+            <input class ="btn btn-outline-dark" type="submit" value="Change">
         </form>
     <form class="form form-horizontal" method="post">
         {% csrf_token %}
     {{ form }}
-    <input type="submit" class="btn btn-primary" value="Update"/>
+    <input type="submit" class="btn btn-outline-dark" value="Update"/>
     </form>
+        </div>
 
 {% endblock %}

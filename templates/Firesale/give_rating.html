@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+    <div class="form-group">
     <form class="form-horizontal" action="{% url 'rating_view' %}" method="post">
         {% csrf_token %}
         {{ form }}
@@ -16,5 +17,6 @@
                    style="clear:both; margin: 10px 0">
         </a>
     </form>
+    </div>
     <a href="{% url 'Firesale-index' %}" class="btn btn-outline-dark">Skip</a>
 {% endblock %}

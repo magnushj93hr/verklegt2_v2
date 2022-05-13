@@ -9,7 +9,7 @@
     {% csrf_token %}
     {{ form }}
     {% if product.accepted == True %}
-     <a href="{% url 'contact_information' %}?id={{ product.id }}" class="btn btn-primary pull-right" style="clear:both; margin: 10px 0">Pay</a>
+     <a href="{% url 'contact_information' %}?id={{ product.id }}" class="btn btn-outline-dark pull-right" style="clear:both; margin: 10px 0">Pay</a>
     {% else %}
         <p>Your bid has not been accepted</p>
     {% endif %}

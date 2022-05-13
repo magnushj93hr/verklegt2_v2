@@ -22,7 +22,7 @@ class Product(models.Model):
         (PREOWNED, 'Pre Owned'),
     ]
     name = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    description = models.CharField(max_length=9999)
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
     price = models.IntegerField(
         default=1,

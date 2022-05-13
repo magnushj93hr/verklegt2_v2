@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     # 'mypurchases.apps.MypurchasesConfig',
     'user.apps.UserConfig',
     'product.apps.ProductConfig',
-    'django_countries'
+    'django_countries',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [

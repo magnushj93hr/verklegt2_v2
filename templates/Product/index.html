@@ -3,7 +3,8 @@
     <div class="prod-detail d-flex">
         <div class="prod-info">
             <h1>{{ product.name }}</h1>
-            <h3>Price: {{ product.price }}$ </h3>
+            {% load humanize %}
+            <h3>Price: {{ product.price|intcomma }}$ </h3>
             <p>{{ product.condition }}</p>
             <p>{{ product.description }}</p>
         </div>

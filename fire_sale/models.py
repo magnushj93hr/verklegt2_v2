@@ -68,11 +68,7 @@ class ContactInformation(models.Model):
     House_number = models.IntegerField()
     City = models.CharField(max_length=255)
     Country = models.CharField(max_length=255)  # Gera select html element
-    Zip = models.IntegerField(
-        validators=[
-            MaxValueValidator(10)
-        ]
-    )
+    Zip = models.IntegerField()
 
 
 def credit_card_check(num):

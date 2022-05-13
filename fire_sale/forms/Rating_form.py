@@ -3,7 +3,6 @@ from fire_sale.models import Rating
 
 
 class RatingForm(ModelForm):
-
     class Meta:
         exclude = ['user']
         model = Rating

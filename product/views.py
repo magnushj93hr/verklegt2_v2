@@ -57,9 +57,6 @@ def place_bid(request, id):
             update_price(request, id, amount, bid_user_id)
             return render(request, 'product/message_after_placebid.html', context)
 
-            # return HttpResponseRedirect(request.path_info)
-    else:  # TODO taka út?
-        pass
     return render(request, 'product/index.html', context)
 
 

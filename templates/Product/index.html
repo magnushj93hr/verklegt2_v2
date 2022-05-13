@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="prod-detail d-flex justify-content-evenly">
+    <div class="prod-detail d-flex">
         <div class="prod-info">
             <h1>{{ product.name }}</h1>
-            <h2>Price: {{ product.price }}$ </h2>
+            <h3>Price: {{ product.price }}$ </h3>
             <p>{{ product.condition }}</p>
             <p>{{ product.description }}</p>
         </div>
-        <div>
             <img src="{{ product.image }}" class="prod-image"/>
-        </div>
     </div>
 
     <form class="form form-horizontal" method="POST">

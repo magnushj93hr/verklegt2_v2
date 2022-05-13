@@ -54,7 +54,6 @@
 .catalog {
     display: flex;
     height: 150px;
-    background-color: orange;
 }
 
 
@@ -89,7 +88,13 @@
 
 }
 
+.prod-info {
+    padding-top:2%
+}
+
 .prod-image{
+    padding-left: 30%;
+    padding-top: 2%;
     max-height: 300px;
     max-width: 100%;
 }

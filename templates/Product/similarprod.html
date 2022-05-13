@@ -1,12 +1,12 @@
 <div class="col-6">
     <a href="/product/{{ item.id }}" class="text-decoration-none white-text">
-        <div class="catalog border border-3 border-secondary">
+        <div class="catalog border border-secondary orange-background bg-gradient">
             <div class="cat-image">
                 <img src="{{ item.image }}" class="img-thumbnail cat-image" alt="...">
             </div>
             <div class="text-center flex-fill">
-                <h1 class="">{{ item.name }}</h1><!-- Gera flottan lit -->
-                <h2 class="">Highest bid: {{ item.price }}$</h2>
+                <h2 class="">{{ item.name }}</h2><!-- Gera flottan lit -->
+                <h3 class="">Highest bid: {{ item.price }}$</h3>
             </div>
         </div>
     </a>

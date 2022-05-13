@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<form class="form form-horizontal" method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Place bid" class="btn btn-outline-dark pull-right" style="clear:both; margin: 10px 0"/>
-</form>
+    <form class="form form-horizontal" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Place bid" class="btn btn-outline-dark pull-right"
+               style="clear:both; margin: 10px 0"/>
+    </form>
 {% endblock %}

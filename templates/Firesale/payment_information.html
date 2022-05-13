@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="form-group">
-    <form class="form-horizontal" action="{% url 'payment_information' %}" method="post">
+        <form class="form-horizontal" action="{% url 'payment_information' %}" method="post">
             {% csrf_token %}
-        <table>
-        {{ form.as_p }}
-        </table>
-        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-outline-dark">Back</a>
-        <a href="{% url 'view_payment'%}">
-    <input type="submit" value="Next" class="btn btn-outline-dark pull-right" style="clear:both; margin: 10px 0">
-        </a>
+            <table>
+                {{ form.as_p }}
+            </table>
+            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-outline-dark">Back</a>
+            <a href="{% url 'view_payment' %}">
+                <input type="submit" value="Next" class="btn btn-outline-dark pull-right"
+                       style="clear:both; margin: 10px 0">
+            </a>
 
-    </form>
+        </form>
     </div>
 {% endblock %}

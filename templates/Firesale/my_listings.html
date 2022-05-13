@@ -3,8 +3,8 @@
     <h1></h1>
     <div class="row gy-5">
         {% for product in product %}
-                {% include 'firesale/listingsoverview.html' with product=product %}
-            {% empty %}
+            {% include 'firesale/listingsoverview.html' with product=product %}
+        {% empty %}
             <p>You have no listings</p>
         {% endfor %}
     </div>

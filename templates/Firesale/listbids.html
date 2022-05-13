@@ -6,7 +6,7 @@
             {% if product.payment != True %}
                 {% include 'firesale/mybids.html' with product=product %}
             {% endif %}
-            {% empty %}
+        {% empty %}
             <p>You have not placed a bid on anything</p>
         {% endfor %}
     </div>

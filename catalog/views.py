@@ -12,9 +12,7 @@ def get_category_by_id(request, id):
         product = Product.objects.filter(category_id=id).order_by('price')
     elif request.GET['sort_by'] == 'name':
         product = Product.objects.filter(category_id=id).order_by('name')
-    req = request.GET.copy()
-    #print(req)
-    category = ProductCategory.objects.get(pk=id)  # select product prefetch / einhvernstaðar
+    category = ProductCategory.objects.get(pk=id)
     context = {
         'category': category,
         'product': product

@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from fire_sale.models import Product, Bids, Favourites
 from product.forms.bid_form import PostBidForm
+
+
 # Create your views here.
 
 
@@ -11,7 +13,7 @@ def index(request):
 
 
 def get_product_by_id(request, id):
-    product = Product.objects.get(pk=id)# select product prefetch / einhvernstaðar
+    product = Product.objects.get(pk=id)  # select product prefetch / einhvernstaðar
     print(product)
     context = {
         'product': product
@@ -21,7 +23,7 @@ def get_product_by_id(request, id):
 
 def place_bid(request, id):
     product = Product.objects.get(pk=id)  # select product prefetch / einhvernstaðar
-    other_products = Product.objects.filter(category_id=product.category_id) #þarf að mínusa frá þá vöru sem er...
+    other_products = Product.objects.filter(category_id=product.category_id)  # þarf að mínusa frá þá vöru sem er...
     other_products2 = other_products.filter(accepted=False)
     other_products3 = other_products2.exclude(id=product.id)[:3]
     form = PostBidForm()
@@ -32,7 +34,7 @@ def place_bid(request, id):
     }
 
     if request.method == 'POST':
-        if product.seller_id == request.user.id: #Bæta bið pop up eða eitthvað slíkt
+        if product.seller_id == request.user.id:  # Bæta bið pop up eða eitthvað slíkt
             messages.add_message(request, messages.INFO, 'Thats your own bid!')
             return HttpResponseRedirect(request.path_info)
         form = PostBidForm(data=request.POST)
@@ -55,8 +57,8 @@ def place_bid(request, id):
             update_price(request, id, amount)
             return render(request, 'product/message_after_placebid.html', context)
 
-            #return HttpResponseRedirect(request.path_info)
-    else: #TODO taka út?
+            # return HttpResponseRedirect(request.path_info)
+    else:  # TODO taka út?
         pass
     return render(request, 'product/index.html', context)
 
@@ -73,7 +75,8 @@ def update_price(request, id, amount):
     image = product.image
     category_id = product.category_id
     seller_id = product.seller_id
-    product = Product(id=id, name=name, description=description, price=price, condition=condition, image=image, category_id=category_id, seller_id=seller_id)
+    product = Product(id=id, name=name, description=description, price=price, condition=condition, image=image,
+                      category_id=category_id, seller_id=seller_id)
     product.save()
 
 

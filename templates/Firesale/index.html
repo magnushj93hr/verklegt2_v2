@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-        <div class="input-group">
-    <input type="search" class="form-control" id="search-box" placeholder ="Enter your search.."/>
-    <div class="input-group-btn">
-        <button type="button" id="search-btn" class="btn btn-default">Search</button>
-    </div>
+    <div class="input-group">
+        <input type="search" class="form-control" id="search-box" placeholder="Enter your search.."/>
+        <div class="input-group-btn">
+            <button type="button" id="search-btn" class="btn btn-default">Search</button>
+        </div>
         <script>
             let msg = document.getElementById("search-box");
             let button = document.getElementById("search-btn");
-            msg.addEventListener("keypress", function(event){
+            msg.addEventListener("keypress", function (event) {
 
-            if (event.keyCode == 13) {  {#veit ekki afhverju það er eitthvað vesen hér en kannski laga?#}
-                button.click();
-            }
+                if (event.keyCode == 13) {  {#veit ekki afhverju það er eitthvað vesen hér en kannski laga?#}
+                    button.click();
+                }
             });
         </script>
     </div>

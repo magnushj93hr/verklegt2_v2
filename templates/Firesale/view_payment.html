@@ -7,16 +7,17 @@
     <h4>Country: {{ request.session.Country }}</h4>
     <h4>Zip: {{ request.session.Zip }}</h4>
     <h4>Cardholder Name: {{ request.session.Name_of_cardholder }}</h4>
-    <h4>Card Number: {{ request.session.card_number}}</h4>
+    <h4>Card Number: {{ request.session.card_number }}</h4>
     <h4>Exp Month: {{ request.session.Exp_month }}</h4>
     <h4>Exp Year: {{ request.session.Exp_year }}</h4>
     <h4>CVC: {{ request.session.CVC }}</h4>
     <form class="form-horizontal" action="{% url 'view_payment' %}" method="post">
-    {% csrf_token %}
+        {% csrf_token %}
         <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-outline-dark">Back</a>
-    <a href="{% url 'view_payment' %}">
-    <button type="submit" class="btn btn-outline-dark pull-right" style="clear:both; margin: 10px 0">Confirm</button>
-    </a>
+        <a href="{% url 'view_payment' %}">
+            <button type="submit" class="btn btn-outline-dark pull-right" style="clear:both; margin: 10px 0">Confirm
+            </button>
+        </a>
 
     </form>
 {% endblock %}

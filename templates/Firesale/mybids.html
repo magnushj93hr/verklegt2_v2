@@ -1,20 +1,21 @@
 {% block content %}
     <div class="col-sm-12 col-md-6 col-lg-4">
         <div class="card card-box">
-        <img src="{{ product.image }}" class="card-img-top prod-image" />
+            <img src="{{ product.image }}" class="card-img-top prod-image"/>
             <div class="card-body">
                 <h4 class="card-title">{{ product.name }}</h4><!-- Gera flottan lit -->
                 <p class="card-text">{{ product.description }}</p>
                 <p class="card-text">{{ product.price }}</p>
                 <p class="card-text">{{ product.condition }}</p>
                 <form class="form form-horizontal" method="POST">
-                {% csrf_token %}
-                {{ form }}
-                {% if product.accepted == True %}
-                 <a href="{% url 'contact_information' %}?id={{ product.id }}" class="btn btn-outline-dark" style="clear:both; margin: 10px 0">Pay</a>
-                {% else %}
-                    <p>Your bid has not been accepted</p>
-                {% endif %}
+                    {% csrf_token %}
+                    {{ form }}
+                    {% if product.accepted == True %}
+                        <a href="{% url 'contact_information' %}?id={{ product.id }}" class="btn btn-outline-dark"
+                           style="clear:both; margin: 10px 0">Pay</a>
+                    {% else %}
+                        <p>Your bid has not been accepted</p>
+                    {% endif %}
                 </form>
             </div>
         </div>

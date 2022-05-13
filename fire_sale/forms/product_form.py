@@ -4,14 +4,14 @@ from fire_sale.models import Product
 from django import forms
 
 
-class ProductCreateForm(ModelForm):
+class ProductCreateForm(forms.ModelForm):
     image = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
     seller = User.username
 
     class Meta:
         model = Product
         exclude = ['id', 'seller', 'accepted', 'payment']
-        widget = {
+        widgets = {
             'name': widgets.TextInput(attrs={'class': 'form-control'}),
             'description': widgets.TextInput(attrs={'class': 'form-control'}),
             'category': widgets.Select(attrs={'class': 'form-control'}),

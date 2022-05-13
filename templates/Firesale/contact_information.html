@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
+    <div class="form-group">
     <form class="form-horizontal" action="{% url 'contact_information' %}" method="post">
             {% csrf_token %}
-            <table>
             {{ form.as_p }}
-            </table>
         <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-outline-dark">Back</a>
         <a href="{% url 'payment_information'%}">
     <input type="submit" value="Next" class="btn btn-outline-dark pull-right" style="clear:both; margin: 10px 0">
             </a>
     </form>
+    </div>
 {% endblock %}

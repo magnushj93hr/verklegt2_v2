@@ -1,16 +1,17 @@
+from django import forms
 from django.forms import ModelForm, widgets
 from fire_sale.models import ContactInformation
 
 
-class ContactInformationCreateForm(ModelForm):
+class ContactInformationCreateForm(forms.ModelForm):
     class Meta:
         model = ContactInformation
         exclude = ['id']
-        widget = {
-            'Full name': widgets.TextInput(attrs={'class': 'form-control', 'name': 'fullname', 'id': 'fullname'}),
-            'Street Name': widgets.TextInput(attrs={'class': 'form-control', 'name': 'streetname', 'id': 'streetname'}),
-            'House number': widgets.NumberInput(attrs={'class': 'form-control', 'name': 'housenumber', 'id': 'housenumber'}),
-            'City': widgets.TextInput(attrs={'class': 'form-control', 'name': 'city', 'id': 'city'}),
-            'Country': widgets.TextInput(attrs={'class': 'form-control', 'name': 'country', 'id': 'country'}), # bæta við Country dropdown
-            'Zip': widgets.NumberInput(attrs={'class': 'form-control', 'name': 'zip', 'id': 'zip'})
+        widgets = {
+            'Full_name': widgets.TextInput(attrs={'class': 'form-control'}),
+            'Street_name': widgets.TextInput(attrs={'class': 'form-control'}),
+            'House_number': widgets.NumberInput(attrs={'class': 'form-control'}),
+            'City': widgets.TextInput(attrs={'class': 'form-control'}),
+            'Country': widgets.TextInput(attrs={'class': 'form-control'}), # bæta við Country dropdown
+            'Zip': widgets.NumberInput(attrs={'class': 'form-control'})
         }

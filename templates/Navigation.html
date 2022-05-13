@@ -69,7 +69,7 @@
                    </li>
           {% endif %}
               {% if user.is_authenticated %}
-            {% if user.profile.avg > 0 %}
+            {% if user.profile.avg != '0' %}
                 <li class="nav-item"><a class="nav-link">{{ user.profile.avg }}</a></li>
             {% else %}
                 <li class="nav-item"><a class="nav-link">No rating yet!</a></li>

@@ -1,16 +1,17 @@
 <div class="card mb-3 orange-background bg-gradient text-center border-secondary" style="max-width: 638px;">
     <a href="/product/{{ item.id }}" class="text-decoration-none white-text">
-  <div class="row g-0">
-    <div class="col-md-4 cat-image-container">
-      <img src="{{ item.image }}" class="img-fluid rounded-start cat-image" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body card-box">
-        <h1 class="card-title">{{ item.name }}</h1>
-          {% load humanize %}
-        <h3 class="card-text">Highest bid: {{ item.price|intcomma }}$</h3>
-          <form action="{% url 'add_to_favorite' %}" method="Post">
-        {% csrf_token %}
+        <div class="row g-0">
+            <div class="col-md-4 cat-image-container">
+                <img src="{{ item.image }}" class="img-fluid rounded-start cat-image" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body card-box">
+                    <h4 class="card-title">{{ item.name }}</h4>
+                    {% load humanize %}
+                    <h5 class="card-text">Highest bid: {{ item.price|intcomma }}$</h5>
+                    <form action="{% url 'add_to_favorite' %}" method="Post">
+                        {% csrf_token %}
+
 
                         <button type="submit" value="{{ item.id }},{{ request.path }}" class="btn btn-outline-dark"
                                 name="product_id">Favorite

@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.contrib.auth.models import User
+from django_countries.fields import CountryField
 
 
 class ProductCategory(models.Model):
@@ -67,7 +68,7 @@ class ContactInformation(models.Model):
     Street_name = models.CharField(max_length=255)
     House_number = models.IntegerField()
     City = models.CharField(max_length=255)
-    Country = models.CharField(max_length=255)  # Gera select html element
+    Country = CountryField()  # Gera select html element
     Zip = models.IntegerField()
 
 

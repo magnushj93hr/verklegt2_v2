@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     # 'mylistings.apps.MylistingsConfig',
     # 'mypurchases.apps.MypurchasesConfig',
     'user.apps.UserConfig',
-    'product.apps.ProductConfig'
+    'product.apps.ProductConfig',
+    'django_countries'
 ]
 
 MIDDLEWARE = [

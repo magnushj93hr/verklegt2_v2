@@ -119,7 +119,12 @@
 .notification-container {
     padding: 20px;
 }
-
+.notification-container {
+    display: inline-flex;
+}
+#notifmessage {
+    margin-right: 20px;
+}
 .notification-container.seen {
     display: none;
 }
@@ -141,4 +146,11 @@ ul.messages > li {
     background-color: #FE6D73;
     border-bottom: solid 6px #FF444B;
     color: white;
+}
+
+.sortby {
+    text-decoration: none;
+}
+
+.amountsim {
 }

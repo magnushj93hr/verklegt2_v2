@@ -12,7 +12,6 @@
         </div>
     </div>
 
-
     <form class="form form-horizontal" method="POST">
     {% if request.user.id != product.seller_id %}
         {% csrf_token %}

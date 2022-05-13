@@ -3,10 +3,9 @@
         <div class="card card-box">
             <img src="{{ product.image }}" class="card-img-top prod-image"/>
             <div class="card-body">
-                <h4 class="card-title">{{ product.name }}</h4><!-- Gera flottan lit -->
-                <p class="card-text">{{ product.description }}</p>
-                <p class="card-text">{{ product.price }}</p>
-                <p class="card-text">{{ product.condition }}</p>
+                <h3 class="card-title">{{ product.name }}</h3><!-- Gera flottan lit -->
+                <h5 class="card-text">Highest bid: {{ product.price }}$</h5>
+                <h5 class="card-text">Condition: {{ product.condition }}</h5>
                 <form class="form form-horizontal" method="POST">
                     {% csrf_token %}
                     {{ form }}

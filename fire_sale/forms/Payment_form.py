@@ -1,5 +1,4 @@
 from django.forms import ModelForm, widgets, forms
-
 from fire_sale.models import PaymentInformation
 
 

@@ -134,7 +134,6 @@ class PaymentInformation(models.Model):
 
 
 class Notification(models.Model):
-
     seen = models.BooleanField(default=False)
     message = models.CharField(max_length=255)
     buyer = models.ForeignKey(User, on_delete=models.CASCADE)

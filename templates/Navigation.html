@@ -7,48 +7,23 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <!-- GAMLI SEARCH BAR
-                <form class="d-flex">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>-->
-                <!--<div class="input-group">
-                    <input type="search" class="form-control" id="search-box" placeholder ="Enter your search.."/>
-                    <div class="input-group-btn">
-                        <button type="button" id="search-btn" class="btn btn-default">Search</button>
-                    </div>
-                </div>-->
-                {% if user.is_authenticated %}
-                    <!--<li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Watchlist
-          </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{% url 'my_listings' %}">My Listings</a></li>
-                <li><a class="dropdown-item" href="{% url 'my_bids' %}">My Bids</a></li>
-                <li><a class="dropdown-item" href="{% url 'Firesale-index' %}">My Favourites</a></li>
-              </ul>
 
-        </li>-->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'my_listings' %}">My Listings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'my_bids' %}">My Bids</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'push_notification' %}">Notifications</a>
-                    </li>
-                    <li class="nav-item">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'my_listings' %}">My Listings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'my_bids' %}">My Bids</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'push_notification' %}">Notifications</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'create_product' %}">Create new listing</a>
-                {% endif %}
 
             </ul>
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'Firesale-index' %}"><i class="fa fa-fw fa-search"></i></a></li>
-
-                <!-- Hér er heart táknið: -->
 
                 {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'favorites' %}">
@@ -79,7 +54,6 @@
                         <li class="nav-item"><a class="nav-link">No rating yet!</a></li>
                     {% endif %}
                     </ul>
-                    <!--hér er gamli search barinn!! -->
 
                     <img src="{{ user.profile.profile_image }}" class="profile-image img-thumbnail" id="profileimg"/>
                 {% endif %}

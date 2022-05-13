@@ -164,8 +164,8 @@ def rating_view(request):
     else:
         form = RatingForm()
     return render(request, 'firesale/give_rating.html', {
-            'form': form
-        })
+        'form': form
+    })
 
 
 def update_average_rating(request):
@@ -178,7 +178,7 @@ def update_average_rating(request):
         else:
             my_dict[i.user_id].append(i.Grade)
     for key, val in my_dict.items():
-        my_dict[key] = sum(val)/len(val)
+        my_dict[key] = sum(val) / len(val)
     for key, val in my_dict.items():
         # print(key, val)
         Profile.objects.filter(user_id=key).update(avg=round(val, 1))
@@ -231,10 +231,11 @@ def get_product_by_seller_id(request):
                                     buyer_id=buyer_id, product_id=product.id)
         notification.save()
         for bidder in bidders:
-            not_accepted_not = Notification(seen=False, message=f"Your bid for {product.name} has not been accepted", buyer_id=bidder,
+            not_accepted_not = Notification(seen=False, message=f"Your bid for {product.name} has not been accepted",
+                                            buyer_id=bidder,
                                             product_id=product.id)
             not_accepted_not.save()
-        push_notification(request) #hafa með eða ekki??
+        push_notification(request)  # hafa með eða ekki??
 
         update_accept(request, prod_id)
 

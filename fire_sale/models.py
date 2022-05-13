@@ -38,7 +38,7 @@ class Product(models.Model):
     seller = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     accepted = models.BooleanField(default=False)
     payment = models.BooleanField(default=False)
-    highest_bidder = models.CharField(null=True, max_length=9999)
+    highest_bidder = models.IntegerField(null=True, max_length=9999)
 
 
 class ProductImage(models.Model):

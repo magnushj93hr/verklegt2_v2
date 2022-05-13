@@ -5,7 +5,7 @@
 
         <form class="form form-horizontal" method="POST">
             <div class="notification-container {% if notification.seen == True %}seen{% endif %}">
-                <p>{{ notification.message }}</p>
+                <p id="notifmessage">{{ notification.message }}</p>
 
                 {% csrf_token %}
                 {{ form }}

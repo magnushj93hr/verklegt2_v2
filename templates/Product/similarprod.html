@@ -5,9 +5,9 @@
                 <img src="{{ item.image }}" class="img-thumbnail cat-image" alt="...">
             </div>
             <div class="text-center flex-fill">
-                <h2 class="">{{ item.name }}</h2><!-- Gera flottan lit -->
+                <h3 class="">{{ item.name }}</h3><!-- Gera flottan lit -->
                 {% load humanize %}
-                <h3 class="">Highest bid: {{ item.price|intcomma }}$</h3>
+                <h4 class="">Highest bid: {{ item.price|intcomma }}$</h4>
             </div>
         </div>
     </a>
